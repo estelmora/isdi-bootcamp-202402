@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  /* si no hay margin, sale uno x defecto y hay que quitarlo */
+}
+body #space {
+  background-color: rgb(255, 240, 245);
+  width: 100vw;
+  height: 100vh;
+}
+body #enemy-background {
+  background-color: rgb(243, 126, 188);
+  width: 80vw;
+  height: 50vh;
+  position: absolute;
+  left: 10vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+body .enemies {
+  width: 10%;
+  height: 20%;
+}
+body #ship {
+  height: 15vh;
+  position: absolute;
+  top: 85vh;
+  left: calc(50vw - 5.905511811vh);
+}
+
+/*# sourceMappingURL=style.css.map */
