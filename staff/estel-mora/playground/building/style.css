@@ -1,0 +1,47 @@
+.building {
+  position: absolute;
+  left: 150px;
+}
+.building__floor {
+  width: 100px;
+  height: 50px;
+  background-color: rgb(235, 47, 40);
+  border: 2px solid rgb(44, 126, 227);
+  display: flex;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  justify-content: space-around;
+}
+.building__window {
+  width: 10px;
+  height: 10px;
+  background-color: rgb(185, 235, 243);
+  display: flex;
+  border: 2px solid rgb(218, 55, 218);
+  align-content: center;
+  justify-content: space-evenly;
+}
+
+.entrance {
+  width: 150px;
+  height: 70px;
+  background-color: rgb(240, 128, 128);
+  position: relative;
+  top: 485px;
+  left: 115px;
+  border: 2px solid rgb(34, 153, 84);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column-reverse;
+}
+.entrance__door {
+  width: 80px;
+  height: 40px;
+  background-color: rgb(138, 43, 226);
+}
+
+/*# sourceMappingURL=style.css.map */

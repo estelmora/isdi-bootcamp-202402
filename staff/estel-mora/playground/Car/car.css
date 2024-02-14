@@ -1,0 +1,87 @@
+.car-background {
+  background-color: rgb(252, 244, 233);
+  width: 350px;
+  height: 250px;
+  position: relative;
+}
+
+.car-taxi-board {
+  background-color: rgb(205, 227, 84);
+  width: 40px;
+  height: 15px;
+  position: relative;
+  border-radius: 5px;
+  top: 17px;
+  left: 148px;
+}
+
+.car-up {
+  background-color: rgb(255, 242, 127);
+  width: 140px;
+  height: 120px;
+  position: absolute;
+  border-radius: 12px;
+  top: 30px;
+  left: 99px;
+}
+
+.car-window1 {
+  background-color: rgba(15, 49, 72, 0.768);
+  width: 110px;
+  height: 70px;
+  position: relative;
+  border-radius: 5px;
+  top: 25px;
+  left: 115px;
+}
+
+.car-window2 {
+  background-color: rgba(59, 180, 227, 0.714);
+  width: 105px;
+  height: 60px;
+  position: relative;
+  border-radius: 5px;
+  top: 4px;
+  left: 2px;
+}
+
+.car-bottom {
+  background-color: rgba(0, 0, 0, 0.955);
+  width: 250px;
+  height: 70px;
+  position: absolute;
+  border-radius: 10px;
+  top: 120px;
+  left: 50px;
+}
+.car-bottom2 {
+  background-color: rgba(207, 237, 247, 0.921);
+  width: 220px;
+  height: 40px;
+  position: absolute;
+  border-radius: 10px;
+  top: 15px;
+  left: 15px;
+}
+
+.car-tire1 {
+  background-color: rgba(15, 8, 8, 0.948);
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  border-radius: 90px;
+  top: 175px;
+  left: 105px;
+}
+
+.car-tire2 {
+  background-color: rgba(15, 8, 8, 0.888);
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  border-radius: 90px;
+  top: 175px;
+  left: 190px;
+}
+
+/*# sourceMappingURL=car.css.map */

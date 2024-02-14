@@ -1,0 +1,73 @@
+.sunny-background {
+    background-color: whitesmoke;
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+.triangle1 {
+    position: absolute;
+    top: 10px;
+    left: 80px;
+    width: 0;
+    height: 0;
+    border-right: 20px solid transparent;
+    border-top: 10px solid transparent;
+    border-left: 20px solid transparent;
+    border-bottom: 40px solid #f0ad4e;
+}
+
+.triangle2 {
+    position: absolute;
+    top: 45px;
+    left: 120px;
+    width: 0;
+    height: 0;
+    border-right: 20px solid transparent;
+    border-top: 10px solid transparent;
+    border-left: 20px solid transparent;
+    border-bottom: 40px solid #f0ad4e;
+    transform-origin: bottom center;
+    transform: rotate(95deg);
+}
+
+.triangle3 {
+    position: absolute;
+    top: 96px;
+    left: 80px;
+    width: 0;
+    height: 0;
+    border-right: 20px solid transparent;
+    border-top: 10px solid transparent;
+    border-left: 20px solid transparent;
+    border-bottom: 40px solid #f0ad4e;
+    transform-origin: bottom center;
+    transform: rotate(180deg);
+}
+
+.triangle4 {
+    position: absolute;
+    top: 50px;
+    left: 33px;
+    width: 0;
+    height: 0;
+    border-right: 20px solid transparent;
+    border-top: 10px solid transparent;
+    border-left: 20px solid transparent;
+    border-bottom: 40px solid #f0ad4e;
+    transform-origin: bottom center;
+    transform: rotate(-90deg);
+}
+
+.sunny-face {
+    background-color: rgb(246, 233, 119);
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+
+}

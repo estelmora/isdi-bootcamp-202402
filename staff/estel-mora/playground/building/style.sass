@@ -1,0 +1,40 @@
+@import ../Pig/utils
+.building
+    position: absolute
+    left: 150px
+
+    &__floor
+        @include size(100px,50px)
+        background-color: rgb(235, 47, 40)
+        border: 2px solid rgb(44, 126, 227)
+        display: flex
+        align-items: center
+        width: 100px
+        height: 50px
+        justify-content: space-around
+
+    &__window
+        @include size(10px,10px)
+        background-color: rgb(185, 235, 243)
+        display: flex
+        border: 2px solid rgb(218, 55, 218)
+        align-content: center
+        justify-content: space-evenly
+
+.entrance
+    @include size(150px, 70px)
+    background-color: rgb(240, 128, 128)
+    position: relative
+    top: 485px
+    left: 115px
+    border: 2px solid rgb(34,153,84)
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    align-content: center
+    flex-wrap: nowrap
+    flex-direction: column-reverse
+
+    &__door
+        @include size(80px,40px)
+        background-color: rgb(138,43,226)

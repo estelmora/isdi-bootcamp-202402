@@ -1,0 +1,130 @@
+.horse-background {
+  background-color: antiquewhite;
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.horse-head {
+  background-color: burlywood;
+  width: 70px;
+  height: 130px;
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  padding: 5px;
+  border: solid 1px rgb(126, 94, 34);
+  border-top-left-radius: 40%;
+  border-top-right-radius: 40%;
+  border-bottom-left-radius: 80%;
+  border-bottom-right-radius: 80%;
+}
+.horse-head-mark {
+  position: absolute;
+  width: 20px;
+  height: 15px;
+  border: 1px solid #efeeee;
+  background: #ffffff;
+  top: 70px;
+  left: 30px;
+  border-radius: 4px;
+  -webkit-transform: rotate(45deg) skew(15deg, 15deg);
+  -moz-transform: rotate(45deg) skew(15deg, 15deg);
+  -ms-transform: rotate(45deg) skew(15deg, 15deg);
+  -o-transform: rotate(45deg) skew(15deg, 15deg);
+  transform: rotate(45deg) skew(15deg, 15deg);
+}
+
+.horse-bangs {
+  background-color: rgb(155, 87, 27);
+  width: 75px;
+  height: 30px;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-top-left-radius: 70px;
+  border-top-right-radius: 70px;
+  border-bottom-left-radius: 80%;
+  border-bottom-right-radius: 80%;
+}
+
+.horse-left-eye {
+  background-color: black;
+  width: 15px;
+  height: 25px;
+  position: absolute;
+  border-radius: 100px;
+  top: 40px;
+  left: 0px;
+}
+.horse-left-eye-pupil {
+  background-color: rgba(255, 255, 255, 0.784);
+  width: 8px;
+  height: 12px;
+  position: absolute;
+  border-radius: 100px;
+  top: 6px;
+  left: 2px;
+}
+
+.horse-right-eye {
+  background-color: black;
+  width: 15px;
+  height: 25px;
+  position: absolute;
+  border-radius: 100px;
+  top: 40px;
+  left: 65px;
+}
+
+.horse-nose1 {
+  width: 10px;
+  height: 16px;
+  position: absolute;
+  top: 120px;
+  left: 27px;
+  background-color: rgb(45, 5, 10);
+  -moz-border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+  -webkit-border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+}
+
+.horse-nose2 {
+  width: 10px;
+  height: 16px;
+  position: absolute;
+  top: 120px;
+  left: 47px;
+  background-color: rgb(45, 5, 10);
+  -moz-border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+  -webkit-border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+}
+
+.horse-left-ear {
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  top: 35px;
+  left: 15px;
+  -moz-border-radius: 0 50%/0 100%;
+  -webkit-border-radius: 0 50%/0 100%;
+  border-radius: 0 50%/0 100%;
+  background: #5b4f27;
+  border: 2px solid #827b7b;
+}
+
+.horse-right-ear {
+  position: absolute;
+  width: 30px;
+  height: 90px;
+  top: 35px;
+  left: 15px;
+  -moz-border-radius: 0 50%/0 100%;
+  -webkit-border-radius: 0 50%/0 100%;
+  border-radius: 0 50%/0 100%;
+  background: #5b4f27;
+  border: 2px solid #827b7b;
+}
+
+/*# sourceMappingURL=Horse.css.map */

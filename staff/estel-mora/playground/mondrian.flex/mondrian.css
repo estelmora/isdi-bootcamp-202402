@@ -1,0 +1,101 @@
+.canvas {
+  height: 250px;
+  width: 200px;
+  margin: 0;
+  border: 5px solid rgb(0, 139, 139);
+  display: flex;
+  flex-direction: column;
+}
+.canvas-top {
+  display: flex;
+  flex-direction: row;
+  height: 30%;
+  width: 100%;
+}
+.canvas-top-left {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+}
+.canvas-top-left-up {
+  background-color: rgb(219, 129, 129);
+  height: 25%;
+  width: 100%;
+}
+.canvas-top-left-down {
+  background-color: rgb(29, 129, 29);
+  height: 75%;
+  width: 100%;
+}
+.canvas-top-right {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+}
+.canvas-top-right-up {
+  background: rgb(238, 130, 238);
+  height: 60%;
+  width: 100%;
+}
+.canvas-top-right-down {
+  background-color: rgb(192, 192, 192);
+  height: 40%;
+  width: 100%;
+}
+.canvas-middle {
+  display: flex;
+  flex-direction: row;
+  height: 40%;
+  width: 100%;
+}
+.canvas-middle-left {
+  background-color: rgb(64, 224, 208);
+  height: 100%;
+  width: 40%;
+}
+.canvas-middle-center {
+  background-color: rgb(154, 205, 50);
+  height: 100%;
+  width: 25%;
+}
+.canvas-middle-right {
+  background-color: rgb(160, 82, 45);
+  height: 100%;
+  width: 35%;
+}
+.canvas-bottom {
+  display: flex;
+  flex-direction: row;
+  height: 30%;
+  width: 100%;
+}
+.canvas-bottom-left {
+  background-color: rgb(216, 191, 216);
+  height: 100%;
+  width: 50%;
+}
+.canvas-bottom-center {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 40%;
+}
+.canvas-bottom-center-up {
+  background-color: rgb(255, 99, 71);
+  height: 50%;
+  width: 100%;
+}
+.canvas-bottom-center-down {
+  background-color: rgb(147, 112, 219);
+  height: 50%;
+  width: 100%;
+}
+.canvas-bottom-right {
+  background-color: rgb(199, 21, 133);
+  height: 100%;
+  width: 10%;
+}
+
+/*# sourceMappingURL=mondrian.css.map */
