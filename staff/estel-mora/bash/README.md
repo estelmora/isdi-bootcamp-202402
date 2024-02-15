@@ -1,39 +1,52 @@
-#bash
-pwd: indica la carpeta actual
-ls: ensenya les carpetes dins de la carpeta actual
-ls -l: mostra els permisos
-drwx
-- d: directorio
-- r: read
-- w: write
-- x: exectue
+# Bash
 
-l: link
-.= archivo oculto
-touch : crea doc
-mkdir: crea directorio//carpeta
-cd: change directorio (para crear o acceder a carpetas ej: cd estel y dentro de allí puedes crear y ver etc.)
-cd .. : volver a la carpeta anterior 
-mv: cambiar nombre directorio/carpeta
-
-comand J : para abrir el terminal dentro de visual
-
-## pwd path to working directory:
+## Some easy commands: 
+### pwd: displays the current directory path
 ```sh
-/Users/esetlmora
+$  pwd
 ````
 
-```js
-console.log("Hola mundo")
-````
-## ls -l (lust file with details)
+### ls: lists the files and directories in the current directory
 ```sh
-sh = bash ()
+$ ls
+`````
+
+### touch: + filename.txt: create a new empty file with that name
+```sh
+$ touch filename.text
+ex: $ touch hello.world
 ````
-### ls -a ( list hiddens)
-````sh
-muestra los archivos ocultos
-Ejemplo:
+
+### mkdir: create directories (folders) in the file system
+```sh
+$ mkdir "folder name"
+```
+
+### mv: move files/ directories from one location to another
+```sh
+$ mv 
+ex1: estel@MacBook-Air-de-Estel ~ % mv /path/to/source/example.txt /path/to/destination/
+ex2: move hello.world folder-a/folder-b/folder-c
+````
+### cd.. : change the current directory to its parent directory
+```sh
+$ cd.. 
+````
+
+## cd: changes the current directory to the specified director
+```sh
+$ cd get inside that directory (in order to add, change or move within)
+ex: $ cd workspace --> gets into that directory
+```
+### ls-l: list files and directories in long format
+```sh
+$ ls-l
+```
+
+### ls-a : list hidden files and irectories
+```sh
+$ ls-a
+example: Ejemplo:
 estel@MacBook-Air-de-Estel ~ % ls -a
 .			.viminfo		Movies
 ..			.vscode			Music
@@ -46,54 +59,36 @@ estel@MacBook-Air-de-Estel ~ % ls -a
 .np
 ```
 
-## mkdir (crear carpeta / directorio)
+## clear:vclears the terminal screen
 ```sh
-$ mkdir workspace
-````
-## cd (cambiar directorio)
-```sh
-$ cd workspace
-````
-## touch (crear un archivo vacío)
-````sh
-$ touch hello.world
-````
-## mv (renombrar una carpeta o mover carpeta)
-```sh
-$ mv hello.world  hola.mundo
-carpeta  hello world --> hola.mundo
-para cambiar de lugar la carpeta:
-$ move hello.world folder-a/folder-b/folder-c
-poner la ruta nueva 
+$ clear
 ````
 
-## clear ( limpiar el terminal)
+## sudo: allows to execute a command as the superuser
 ```sh
-deja el terminal en blanco, sin tener que cerrar y volver abrir
+$ sudo
 ````
-## sudo (super admin user)
+## top: shows the current processes happening in the pc 
 ```sh
-sirve para hacer acciones que requieren contraseña o perfil de administrador
+$ top 
+ex: CPU %, etc
 ````
-## top
-```sh
-muestra todos los procesos que están pasando en el ordenador, %CPU, etc
+## kill -9: to forcefully terminate a process
+```sh 
+$ kill -9
 ````
-## kill -9
-```$ kill -9
-para parar el "top" y poder seguir usando el terminal
-````
-## tree <path> (muestra la estructura de archivos/carpetas en forma de árbol)
+
+## tree <path>: display the directory structure as a tree-like diagram
 ```sh
 $ tree workspace/isdi-bootcamp2024
-por ahora no funciona, porque se tiene que instalar
 ```
 
-## rm -rf (eliminar carpeta + contenido)
+
+## rm -rf:forcefully remove files and directories, including their contents 
 ```sh
 $ rm -rf workspace/helloworld
- workspace (+ruta del directorio/carpeta)
-$ rm :remove --> borra la carpeta si está vacía, si hay contenido no
+ workspace (+route del directorio/carpeta)
+$ rm :remove --> removes the folder if it's empty, if there's content no.
 $ rm -rf : eliminar forzado con el contenido de dentro.
 ````
 
