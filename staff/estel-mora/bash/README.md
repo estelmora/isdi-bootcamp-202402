@@ -71,7 +71,7 @@ $ sudo
 ```sh
 $ top 
 CPU %, etc
-````
+```
 ## kill -9: to forcefully terminate a process
 ```sh 
 $ kill -9
