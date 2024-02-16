@@ -4,18 +4,18 @@
 ### pwd: displays the current directory path
 ```sh
 $  pwd
-````
+```
 
 ### ls: lists the files and directories in the current directory
 ```sh
 $ ls
-`````
+````
 
 ### touch: + filename.txt: create a new empty file with that name
 ```sh
 $ touch filename.text
 ex: $ touch hello.world
-````
+```
 
 ### mkdir: create directories (folders) in the file system
 ```sh
@@ -27,11 +27,11 @@ $ mkdir "folder name"
 $ mv 
 ex1: estel@MacBook-Air-de-Estel ~ % mv /path/to/source/example.txt /path/to/destination/
 ex2: move hello.world folder-a/folder-b/folder-c
-````
+```
 ### cd.. : change the current directory to its parent directory
 ```sh
 $ cd.. 
-````
+```
 
 ## cd: changes the current directory to the specified director
 ```sh
@@ -62,7 +62,7 @@ estel@MacBook-Air-de-Estel ~ % ls -a
 ## clear:vclears the terminal screen
 ```sh
 $ clear
-````
+```
 
 ## sudo: allows to execute a command as the superuser
 ```sh
@@ -76,7 +76,7 @@ ex: CPU %, etc
 ## kill -9: to forcefully terminate a process
 ```sh 
 $ kill -9
-````
+```
 
 ## tree <path>: display the directory structure as a tree-like diagram
 ```sh
@@ -90,5 +90,5 @@ $ rm -rf workspace/helloworld
  workspace (+route del directorio/carpeta)
 $ rm :remove --> removes the folder if it's empty, if there's content no.
 $ rm -rf : eliminar forzado con el contenido de dentro.
-````
+```
 
