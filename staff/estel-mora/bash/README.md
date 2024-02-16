@@ -9,7 +9,7 @@ $  pwd
 ### ls: lists the files and directories in the current directory
 ```sh
 $ ls
-````
+```
 
 ### touch: + filename.txt: create a new empty file with that name
 ```sh
@@ -25,8 +25,8 @@ $ mkdir "folder name"
 ### mv: move files/ directories from one location to another
 ```sh
 $ mv 
-ex1: estel@MacBook-Air-de-Estel ~ % mv /path/to/source/example.txt /path/to/destination/
-ex2: move hello.world folder-a/folder-b/folder-c
+estel@MacBook-Air-de-Estel ~ % mv /path/to/source/example.txt /path/to/destination/
+move hello.world folder-a/folder-b/folder-c
 ```
 ### cd.. : change the current directory to its parent directory
 ```sh
@@ -36,7 +36,7 @@ $ cd..
 ## cd: changes the current directory to the specified director
 ```sh
 $ cd get inside that directory (in order to add, change or move within)
-ex: $ cd workspace --> gets into that directory
+$ cd workspace --> gets into that directory
 ```
 ### ls-l: list files and directories in long format
 ```sh
@@ -46,7 +46,6 @@ $ ls-l
 ### ls-a : list hidden files and irectories
 ```sh
 $ ls-a
-example: Ejemplo:
 estel@MacBook-Air-de-Estel ~ % ls -a
 .			.viminfo		Movies
 ..			.vscode			Music
@@ -71,7 +70,7 @@ $ sudo
 ## top: shows the current processes happening in the pc 
 ```sh
 $ top 
-ex: CPU %, etc
+CPU %, etc
 ````
 ## kill -9: to forcefully terminate a process
 ```sh 
