@@ -1,4 +1,4 @@
-//delete Array.prototype.concat()
+delete Array.prototype.concat
 
 function concat(array1, array2) {
     var newArray = []

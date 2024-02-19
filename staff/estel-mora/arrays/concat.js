@@ -1,4 +1,4 @@
-//delete Array.prototype.concat()
+delete Array.prototype.concat
 
 function concat(arrays) {
     //crear una variable vacia para almacenar el resultado "concatenadedArray[]"
