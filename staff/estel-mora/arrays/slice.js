@@ -6,9 +6,11 @@ function slice(array, index) {
 
     for (var i = 0; i < array.length; i++) {
         newArray[i] = array[i]
+        // }else if{
+        //     for(var i = < 0; i<index.length - 1; i--) {
+        //     newArray[i] = arrray[i]
     }
-    newArray = []
-}
+} newArray = []
 
 var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 
@@ -63,7 +65,13 @@ for (var i= array.length; i<array.length-1; i--)
 console.log('CASE 5')
 slice(animals, 2, -1)
 // Expected output: Array ["camel", "duck"]
+// if index < 0 count backwards! ex: 2-1
+// create 1st loop to start counting forwards  for (var i= 2; i<??
+// create another for loop- to start counting backwards for (var i= ???)
+// newArray[i]= array[2]
+// new Array[i]= array[-1]
 
 console.log('CASE 6')
 slice(animals)
 // Expected output: Array ["ant", "bison", "camel", "duck", "elephant"]
+// no need to change anything in the code, rules should apply the same as before. 

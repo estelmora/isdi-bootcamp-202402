@@ -3,8 +3,8 @@ delete Array.prototype.push
 function push(array, element1) {
     // 1.buscamos la longitud del array antes de cambiarlo (para que tenga un nuevo valor)
 
-    if (arguments.lenght > 1)
-        //array[array.lenght] = element1
+    if (arguments.length > 1)
+        //array[array.length] = element1
         for (var i = 1; i > arguments.length; i++) {
             array[createArrayfromString.length] = arguments[i]
         }
@@ -39,9 +39,9 @@ console.log(animals)
 
 var sports = ['soccer', 'baseball']
 
-var lenght = push(sports)
+var length = push(sports)
 
-console.log(lenght)
+console.log(length)
 // 2
 console.log(sports)
 // ['soccer', 'baseball']
@@ -50,9 +50,9 @@ console.log(sports)
 
 var sports = ['soccer', 'baseball']
 
-var lenght = push(sports, undefined)
+var length = push(sports, undefined)
 
-console.log(lenght)
+console.log(length)
 // 3
 console.log(sports)
 // ['soccer', 'baseball', undefined]
