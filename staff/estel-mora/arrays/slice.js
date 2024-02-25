@@ -2,15 +2,17 @@ delete Array.prototype.slice
 
 /*returns a  copy of a portion of an array into a new array object selected from start to end (end not included) where start and end represent the index of items in that array. The original array will not be modified*/
 function slice(array, index) {
-    var newArray = array
+    var newArray = [];
 
     for (var i = 0; i < array.length; i++) {
-        newArray[i] = array[i]
-        // }else if{
-        //     for(var i = < 0; i<index.length - 1; i--) {
-        //     newArray[i] = arrray[i]
+        newArray[i] = array[i];
     }
-} newArray = []
+} else if (condition) {
+    for (var i = 0; i < index.length - 1; i++) {
+        newArray[i] = array[i];
+    }
+}
+
 
 var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 

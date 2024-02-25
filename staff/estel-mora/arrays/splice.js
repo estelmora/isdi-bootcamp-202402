@@ -2,36 +2,36 @@ delete Array.prototype.slice
 /*changes the contents of an array by removing or replacing existing elements and/or adding new elements in place*/
 
 function splice(array, start, deleteCount, item) {
-    for (var i = array.length - 1; i >= start; i--) {
-        var element = array[i]
-        array[i + 1] = element
-
-        array[start] = item
+    // Handling the case where deleteCount is 0
+    if (deleteCount === 0) {
         return []
-
-    } else if (deleteCount === 1) {
+    }
+    // Handling the case where deleteCount is 1
+    else if (deleteCount === 1) {
         var removed = []
-        removed[removed.length] = array[start]
+        removed.push(array[start])
         array[start] = item
-        return removed
-
-    } else if (deleteCount === 4) {
-        var removed = []
-        for (var i = 0; i < deleteCount; i++)
-            removed[removed.length] = array[start + i]
-
-        for (var i = 0; i < deleteCount - 1; i++) {
-            var element = array[start + deleteCount + i]
-            array[start + 1 + i] = element
-        }
-
-        array.length -= deleteCount - 1
-
-        array[start] = item
-
         return removed
     }
-
+    // Handling the case where deleteCount is more than 1
+    else {
+        var removed = [];
+        // Storing elements to be removed in 'removed' array
+        for (var i = 0; i < deleteCount; i++) {
+            if (array[start + i] !== undefined) { // Checking if index is valid
+                removed.push(array[start + i])
+            }
+        }
+        // Shifting remaining elements to the left
+        for (var j = start; j < array.length - deleteCount; j++) {
+            array[j] = array[j + deleteCount]
+        }
+        // Truncating the array
+        array.length -= deleteCount;
+        // Inserting 'item' at 'start' index
+        array[start] = item
+        return removed
+    }
 }
 
 console.log('CASE 1')
@@ -127,3 +127,4 @@ array.length -= deleteCount -1
 array[start]= item
 
 7. return removed
+*/

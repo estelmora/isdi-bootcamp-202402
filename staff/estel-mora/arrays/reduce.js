@@ -1,19 +1,44 @@
 delete Array.prototype.reduce
+/*combines all elements of an array into a single value by repeatedly applying a function and accumulating the result
+*/
+function reduce(arrat, callback, accum) {
+    for (var i = 0; i < array.length; i++) {
+        var element = array[i]
+        accum = callback(accum, elem)
+    }
+    return accum
+}
 
-/*executes a  "reducer" callback function on each element of the array, in order, passing  the return value from the calculation on the preceding element. The final result is a single value.
-
-The first time that the callback is run there is no "return value of the previous calculation". If supplied, an initial value may be used in its place. Otherwise the array element at index 0 is used as the initial value and iteration starts from the next element (index 1 instead of index 0)*/
 
 console.log('CASE 1')
 
-const array1 = [1, 2, 3, 4];
+var cart = [
+    { what: 'socks', price: 14.95, qty: 2, brand: 'adidas' },
+    { what: 't-shirt', price: 24.85, qty: 3, brand: 'levis' },
+    { what: 'shorts', price: 20.15, qty: 4, brand: 'hilfiger' },
+    { what: 'bag', price: 200.05, qty: 1, brand: 'dolce gabana' },
+]
 
-// 0 + 1 + 2 + 3 + 4
-const initialValue = 0;
-const sumWithInitial = array1.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    initialValue,
-);
 
-console.log(sumWithInitial);
-// Expected output: 10
+var total = cart.reduce(function (amount, item) {
+    return amount + item['price'] * item[qty] // esto calcula el accum total= 385.5
+}, 0) //acumulador al inicio es 0
+
+
+console.log('CASE 2')
+var cart = [
+    { what: 'socks', price: 14.95, qty: 2, brand: 'adidas' },
+    { what: 't-shirt', price: 24.85, qty: 3, brand: 'levis' },
+    { what: 'shorts', price: 20.15, qty: 4, brand: 'hilfiger' },
+    { what: 'bag', price: 200.05, qty: 1, brand: 'dolce gabana' },
+]
+
+var itemsQty = reduce(cart, function (totalQty, item) {
+    return totalQty + item.qty;
+}, 0)
+
+var average = reduce(cart, function (amount, item, index, cart) {
+    return amount + item.price * item.qty / itemsQty
+}, 0)
+
+console.log(average);
