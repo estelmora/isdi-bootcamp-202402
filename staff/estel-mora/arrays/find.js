@@ -40,7 +40,7 @@ for (var i = 0; i < array.length; i++) {
 
 
 */
-var found = find((element) { return element > 20 })
+var found = find((element)  { return element > 20 })
 // callback
 console.log(found)
 // Expected output: 130  
