@@ -1,3 +1,5 @@
+var assert = require('./assert')
+
 /**
  * Inserts elements in iterable object at specfified index.
  *
@@ -11,21 +13,14 @@ function insertMany(object, index, value) {
     if (!(object instanceof Object)) throw new TypeError(object + ' is not an Object')
     if (typeof index !== 'number') throw new TypeError(index + ' is not a Number')
 
-    // object -> #1 { 0: 'red', 1: 'blue', 2: 'green', length: 3 }
-    // index -> 2
-    // value -> 'skyblue'
-    // arguments -> Arguments { 0: #1, 1: 2, 2: 'skyblue', 3: 'gold', 4: 'plum', length: 5 }
-
+    var numOfDisplacements = object.length - index
     var numOfValues = arguments.length - 2
 
-    object[index + numOfValues] = object[index] // #1 { 0: 'red', 1: 'blue', 2: 'green', 5: 'green', length: 3 }
+    for (var n = 0; n < numOfDisplacements; n++)
+        object[object.length - n + numOfValues - 1] = object[object.length - n - 1]
 
     for (var n = 0; n < numOfValues; n++)
-        object[index + n] = arguments[index + n]
-
-    // object[2] = arguments[2] // #1 { 0: 'red', 1: 'blue', 2: 'skyblue', 5: 'green', length: 3 }
-    // object[3] = arguments[3] // #1 { 0: 'red', 1: 'blue', 2: 'skyblue', 3: 'gold', 5: 'green', length: 3 }
-    // object[4] = arguments[4] // #1 { 0: 'red', 1: 'blue', 2: 'skyblue', 3: 'gold', 4: 'plum', 5: 'green', length: 3 }
+        object[index + n] = arguments[2 + n]
 
     object.length += numOfValues
 
@@ -43,19 +38,8 @@ var colors = {
 
 var length = insertMany(colors, 1, 'skyblue')
 
-console.log(length)
-// 4
-
-console.log(colors)
-/*
-{
-    0: 'red',
-    1: 'skyblue',
-    2: 'blue',
-    3: 'green',
-    length: 4
-}
-*/
+assert.equalsValue(length, 4)
+assert.hasValues(colors, 'red', 'skyblue', 'blue', 'green')
 
 console.log('CASE 2: insert skyblue, gold and plum in index 2')
 
@@ -68,29 +52,15 @@ var colors = {
 
 var length = insertMany(colors, 2, 'skyblue', 'gold', 'plum')
 
-console.log(length)
-// 6
-
-console.log(colors)
-/*
-{
-    0: 'red',
-    1: 'blue',
-    2: 'skyblue',
-    3: 'gold',
-    4: 'plum',
-    5: 'green',
-    length: 6
-}
-*/
+assert.equalsValue(length, 6)
+assert.hasValues(colors, 'red', 'blue', 'skyblue', 'gold', 'plum', 'green')
 
 console.log('CASE 3: fails on undefind object parameter')
 
 try {
     insertMany()
 } catch (error) {
-    console.log(error)
-    // TypeError: undefined is not an Object
+    assert.error(error, 'TypeError', 'undefined is not an Object')
 }
 
 console.log('CASE 4: fails on 1 as an object parameter')
@@ -98,8 +68,7 @@ console.log('CASE 4: fails on 1 as an object parameter')
 try {
     insertMany(1)
 } catch (error) {
-    console.log(error)
-    // TypeError: 1 is not an Object
+    assert.error(error, 'TypeError', '1 is not an Object')
 }
 
 console.log('CASE 5: fails on undefined as index parameter')
@@ -114,6 +83,19 @@ var colors = {
 try {
     insertMany(colors)
 } catch (error) {
-    console.log(error)
-    // TypeError: undefined is not a Number
+    assert.error(error, 'TypeError', 'undefined is not a Number')
 }
+
+console.log('CASE 6: insert skyblue, plum, gold, silver, from index 1')
+
+var colors = {
+    0: 'red',
+    1: 'blue',
+    2: 'green',
+    length: 3
+}
+
+var length = insertMany(colors, 1, 'skyblue', 'plum', 'gold', 'silver')
+
+assert.equalsValue(length, 7)
+assert.hasValues(colors, 'red', 'skyblue', 'plum', 'gold', 'silver', 'blue', 'green')
