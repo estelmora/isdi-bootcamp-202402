@@ -1,6 +1,3 @@
-var testingTools = require('./testing-tools')
-
-
 delete Array.prototype.forEach
 
 var assert = require('./assert')
@@ -61,8 +58,8 @@ function assertHasValues(iterable) {
     console.assert(iterable.length === count, 'lenght' + iterable.length + 'equals' + count)
 }
 
-testingTools.assert.hasValues(nums, 10, 20, 30, 40, 50)
-testingTools.assert.hasValues(other, 10, 20, 30, 40, 50)
+assert.hasValues(nums, 10, 20, 30, 40, 50)
+assert.hasValues(other, 10, 20, 30, 40, 50)
 
 
 // 3. vamos al caso 2
@@ -81,7 +78,7 @@ function assertEqualsValue(value, target) {
     console.assert(value === target, target)
 }
 
-testingTools.assert.equalsValue(sum, 150)
+assert.equalsValue(sum, 150)
 // 150
 
 
@@ -116,7 +113,7 @@ var nums = [10, 20, 30, 40, 50]
 try {
     forEach(nums)
 } catch (error) {
-    testingTools.assert.error(error, 'TypeError', 'undefined is not a function')
+    assert.error(error, 'TypeError', 'undefined is not a function')
 }
 
 
@@ -127,7 +124,7 @@ var nums = [10, 20, 30, 40, 50]
 try {
     forEach(nums, {})
 } catch (error) {
-    testingTools.assert.error(error, 'TypeError', '[object Object] is not a function')
+    assert.error(error, 'TypeError', '[object Object] is not a function')
 }
 
 
@@ -138,7 +135,7 @@ var nums = [10, 20, 30, 40, 50]
 try {
     forEach(nums, 123)
 } catch (error) {
-    testingTools.assert.error(error, 'TypeError', '123 is not a function')
+    assert.error(error, 'TypeError', '123 is not a function')
 }
 
 
@@ -149,7 +146,7 @@ var nums = [10, 20, 30, 40, 50]
 try {
     forEach(nums, true)
 } catch (error) {
-    testingTools.assert.error(error, 'TypeError', 'true is not a function')
+    assert.error(error, 'TypeError', 'true is not a function')
 }
 
 console.log('CASE 9: false as callback')
@@ -159,5 +156,5 @@ var nums = [10, 20, 30, 40, 50]
 try {
     forEach(nums, !true)
 } catch (error) {
-    testingTools.assert.error(error, 'TypeError', 'false is not a function')
+    assert.error(error, 'TypeError', 'false is not a function')
 }
