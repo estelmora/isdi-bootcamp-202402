@@ -1,24 +1,30 @@
-var pet = require('./pet')
+var Pet = require('./pet')
 
 console.log('Pet Test')
 
-var cat = newCat('Siria', 2015, 'Home', 'orange and white', 4, 'small', 'salmon and tuna', '5kg')
-console.assert(car.brand === 'Ferrari', 'brand is Ferrari')
+var pet = new Pet('cat', 'orange')
 
-console.assert(cat.name === 'Siria', 'name is Siria')
-console.assert(cat.BornYear === 2015, 'born in 2015')
-console.asssert(cat.LivesAt === 'Home', 'lives at home')
-console.assert(cat.colors === 'orange and white', 'fur is orange and white')
-console.assert(cat.legs === 4, 'has 4 legs')
-console.assert(cat.size === 'small', 'is a small cat')
-console.assert(cat.FavouriteDish === 'salmon and tuna', 'favorite meal is salmon and tuna')
-console.assert(cat.weight === '5kg', ' she weights 5kg')
-console.assert(cat.initialSpeed === 0)
-console.assert(cat.maxspeed === 30)
-console.assert(cat.initialJump === 0)
-console.assert(cat.maxJumpHeight === 2)
-console.assert(cat.status === asleep)
+console.assert(pet.animal === 'cat')
+console.assert(pet.color === 'orange', 'my pet is orange')
 
-console.log('CASE method sleep')
-console.assert(cat.status === 'awake')
-cat.asleep()
+
+console.log('CASE  asleep')
+
+pet.goToSleep()
+console.assert(pet.isAwake === false, 'the pet is asleep')
+
+console.log('CASE  bark')
+pet.bark('guau')
+console.assert(pet.barking === true, 'the dog is barking')
+
+console.log('CASE eat ')
+var horse = new Pet('horse', 'black')
+horse.eat()
+console.assert(horse.eating === 'the horse is eating', 'yes is eating')
+
+console.log('CASE walk ')
+var horse = new Pet('horse', 'black')
+horse.walk('left')
+
+horse.walkDirection = 'forward'
+console.assert(horse.walkDirection === 'left', 'the horse is walking to the left')

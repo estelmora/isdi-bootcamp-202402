@@ -4,7 +4,7 @@ console.log('TEST Car')
 
 console.log('CASE constructor')
 
-var car = new Car('Ferrari', 'Testarossa', 1990, 'red', 3, 'gasoline', 'manual', 6)
+var Car = new Car('Ferrari', 'Testarossa', 1990, 'red', 3, 'gasoline', 'manual', 6)
 
 console.assert(car.brand === 'Ferrari', 'brand is Ferrari')
 console.assert(car.model === 'Testarossa', 'model is Testarossa')
