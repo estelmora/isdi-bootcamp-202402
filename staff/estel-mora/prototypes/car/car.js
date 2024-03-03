@@ -1,19 +1,20 @@
 function Car(brand, model, year, color, doors, fuelType, transmission, maxGears) {
     this.brand = brand
     this.model = model
-    this.status = 'off'
-    this.deposit = 0
     this.color = color
     this.year = year
     this.doors = doors
     this.fuelType = fuelType
     this.transmission = transmission
     this.maxGears = maxGears
+
     this.gear = 0
     this.speed = 0
     this.acceleration = 0
     this.direction = ''
     this.steering = 0
+    this.status = 'off'
+    this.deposit = 0
 
 }
 

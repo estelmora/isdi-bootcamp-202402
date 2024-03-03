@@ -30,6 +30,7 @@ car.fuel(80)
 
 console.assert(car.deposit === 80, 'desposit is at 80%')
 
+
 console.log('CASE method start')
 
 var car = new Car('Citroen', 'CV')
@@ -37,6 +38,8 @@ var car = new Car('Citroen', 'CV')
 car.start()
 
 console.assert(car.status === 'on', 'status is on')
+
+
 
 console.log('CASE method stop')
 
@@ -46,6 +49,8 @@ car.status = 'on'
 car.stop()
 
 console.assert(car.status === 'off', 'status is off')
+
+
 
 console.log('CASE method changeGear')
 
@@ -70,6 +75,8 @@ car.changeGear(-1)
 
 console.assert(car.gear === -1, 'gear is -1')
 
+
+
 console.log('CASE method speedUp')
 
 var car = new Car('Citroen', 'CV')
@@ -87,6 +94,8 @@ car.speedUp(100)
 
 console.assert(car.acceleration === 100, 'acceleration is at 100')
 console.assert(car.direction === 'backward', 'direction is backward')
+
+
 
 console.log('CASE method turnSteering')
 

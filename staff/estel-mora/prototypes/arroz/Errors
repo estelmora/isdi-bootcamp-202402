@@ -1,0 +1,61 @@
+
+// CONCAT -- ARROZ-SPEC
+var matcha = require('./matcha');
+var Arroz = require('./arroz');
+
+matcha.describe('Arroz', function () {
+    matcha.describe('> concat', function () {
+        matcha.it('should concatenate arrays into a new Arroz instance', function () {
+            var arr1 = new Arroz(1, 2, 3);
+            var arr2 = new Arroz(4, 5, 6);
+
+            var concatenated = arr1.concat(arr2);
+
+            matcha.expect(concatenated instanceof Arroz).toBe(true);
+            matcha.expect(concatenated.length).toBe(6);
+            matcha.expect(concatenated[0]).toBe(1);
+            matcha.expect(concatenated[3]).toBe(4);
+            matcha.expect(concatenated[5]).toBe(6);
+        });
+
+        matcha.it('should concatenate arrays and non-array values into a new Arroz instance', function () {
+            var arr1 = new Arroz(1, 2, 3);
+            var arr2 = [4, 5, 6];
+            var str = 'abc';
+
+            var concatenated = arr1.concat(arr2, str);
+
+            matcha.expect(concatenated instanceof Arroz).toBe(true);
+            matcha.expect(concatenated.length).toBe(9);
+            matcha.expect(concatenated[0]).toBe(1);
+            matcha.expect(concatenated[3]).toBe(4);
+            matcha.expect(concatenated[6]).toBe('a');
+            matcha.expect(concatenated[8]).toBe('c');
+        });
+    });
+});
+
+// CONCAT -- ARROZ.JS
+//CONCAT: concatenates the elements of two or more arrays and returns a new array.
+Arroz.prototype.concat = function (...arrays) {
+    // Create a new Arroz instance to store the concatenated elements
+    var concatenatedArray = new Arroz();
+
+    // Iterate through each argument passed to the concat function
+    for (var i = 0; i < arrays.length; i++) {
+        var currentArray = arrays[i];
+
+        // If the current array is neither an Arroz instance nor a regular array
+        if (!(currentArray instanceof Arroz) && !Array.isArray(currentArray)) {
+            currentArray = [currentArray]; // Convert the value to an array
+        }
+
+        // Iterate through the elements of the current array
+        for (var j = 0; j < currentArray.length; j++) {
+            concatenatedArray[concatenatedArray.length] = currentArray[j];
+        }
+    }
+
+    // Return the concatenated Arroz instance
+    return concatenatedArray;
+};
