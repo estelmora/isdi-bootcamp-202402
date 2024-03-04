@@ -188,7 +188,7 @@ Arroz.prototype.findIndex = function (callback) {
 
 
 // FROM: creates a new instance from an iterable or array-like object
-Arroz.prototype.from = function (arrayLike, formula) {
+Arroz.from = function (arrayLike, formula) {
     // Create a new Arroz instance
     var newArray = new Arroz();
 
@@ -208,6 +208,37 @@ Arroz.prototype.from = function (arrayLike, formula) {
     return newArray;
 };
 
+// FOR EACH: 
+Arroz.prototype.forEach = function (callback) {
+    for (var i = 0; i < this.length; i++) {
+        var element = this[i];
 
+        callback(element, i, this);
+    };
+
+}
+//FIND
+Arroz.prototype.find = function (callback) {
+    for (var i = 0; i < this.length; i++) {
+        var element = this[i];
+
+        var matches = callback(element, i, this); // Corrected typo here
+        if (matches) return element;
+    }
+};
+
+//FROM:
+function Arroz() { }
+
+// Define the from method on the Arroz prototype
+Arroz.prototype.from = function (arroz) {
+    var instance = new Arroz();
+
+    for (var i = 0; i < arroz.length; i++) {
+        var element = arroz[i];
+        instance[instance.length++] = element;
+    }
+
+    return instance;
+};
 module.exports = Arroz
-

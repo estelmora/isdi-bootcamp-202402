@@ -168,7 +168,7 @@ var matcha = require('./matcha');
 var Arroz = require('./arroz');
 
 matcha.describe('Arroz', function () {
-    matcha.describe('includes', function () {
+    matcha.describe('>includes', function () {
         matcha.it('should return true if the value is found in the Arroz', function () {
             var a = new Arroz(1, 2, 3, 4, 5);
             matcha.expect(a.includes(3)).toBe(true);
@@ -183,7 +183,7 @@ matcha.describe('Arroz', function () {
 
 // SOME
 matcha.describe('Arroz', function () {
-    matcha.describe(' some', function () {
+    matcha.describe('> some', function () {
         matcha.it('should return true if at least one element satisfies the condition', function () {
             var a = new Arroz(1, 2, 3, 4, 5);
             matcha.expect(a.some(function (element) {
@@ -202,7 +202,7 @@ matcha.describe('Arroz', function () {
 
 //SHIFT
 matcha.describe('Arroz', function () {
-    matcha.describe('shift', function () {
+    matcha.describe('>shift', function () {
         matcha.it('should remove the first element and return it', function () {
             var a = new Arroz(10, 20, 30, 40, 50);
 
@@ -217,7 +217,7 @@ matcha.describe('Arroz', function () {
 });
 //UNSHIFT
 matcha.describe('Arroz', function () {
-    matcha.describe(' unshift', function () {
+    matcha.describe('>unshift', function () {
         matcha.it('should add elements to the beginning of the Arroz', function () {
             var a = new Arroz(30, 40, 50);
             a.unshift(10, 20);
@@ -276,5 +276,70 @@ matcha.describe('Arroz', function () {
             matcha.expect(arr2[0]).toBe(2);
             matcha.expect(arr2[2]).toBe(6);
         });
+    });
+});
+
+// FOR EACH (recibes 3 param)
+matcha.describe('>forEach', function () {
+    matcha.it('should iterate on each element', function () {
+        var a = new Arroz(10, 20, 30, 40, 50, 60);
+        var b = new Arroz();
+
+        a.forEach(function (element, index, arroz) {
+            b[index] = { item: element, iterable: arroz }; // Changed 'element' to 'item'
+            b.length++;
+        });
+
+        matcha.expect(a.length).toBe(6);
+
+        for (var i = 0; i < a.length; i++)
+            matcha.expect(b[i].item).toBe(10 * (i + 1));
+
+        matcha.expect(b.length).toBe(a.length);
+
+        for (var i = 0; i < b.length; i++) {
+            var element = b[i];
+
+            matcha.expect(element.item).toBe(10 * (i + 1));
+            matcha.expect(element.iterable).toBe(a);
+        }
+    });
+});
+
+//FIND
+matcha.describe('>find', function () {
+    var a = new Arroz({ brand: 'adidas', model: 'cool socks', price: 16 }, { brand: 'nike', model: 'air max', price: 120 }, { brand: 'puma', model: 'dangerous glasses', price: 30 });
+
+    var i = 0;
+
+    var item = a.find(function (element, index, arroz) {
+        matcha.expect(index).toBe(i++);
+        matcha.expect(arroz).toBe(a);
+
+        return element.price === 120;
+    });
+
+    matcha.expect(item.brand).toBe('nike');
+    matcha.expect(item.model).toBe('air max');
+    matcha.expect(item.price).toBe(120);
+});
+
+// FROM
+matcha.describe('> from', function () {
+    matcha.it('should create a new instance of Arroz from numbers', function () {
+        var nums = new Arroz(10, 20, 30);
+        var nums2 = Arroz.from(nums); // Call Arroz.from directly
+
+        matcha.expect(nums.length).toBe(3);
+
+        for (var i = 0; i < nums.length; i++) {
+            matcha.expect(nums[i].toBe(10 * (i + 1)));
+        }
+        matcha.expect(nums === nums2).toBe(false);
+        matcha.expect(nums2.length).toBe(nums.length);
+
+        for (var i = 0; i < nums2.length; i++) {
+            matcha.expect(nums2[i]).toBe(10 * (i + 1));
+        }
     });
 });
