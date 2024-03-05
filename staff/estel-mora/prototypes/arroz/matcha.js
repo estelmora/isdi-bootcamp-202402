@@ -64,3 +64,18 @@ matcha.it = it
 matcha.expect = expect
 
 module.exports = matcha
+
+
+
+
+//MATCHA.IT:  it's a functio to define individual test cases within testSuite. Each test has a particular scenario/behaviour
+
+//MATCHA.EXPECT: this is a function within the test cases to make assertions about the behaviour. it verifies wether the outcome meets the expeced outcome. 
+
+//MATCHA.DESCRIBE: it's a funciton to organize the tests into hierarchical group. Collect testSuites. This makes easier to manage and understand larger testSuites. 
+
+// DIFFERENCE BETWEEN : var arroz= new Arroz
+
+//new Arroz= creates a new instance of "Arroz" object. Copying and calling the variable.
+
+//arroz: it's the variable name, it's not a property.
