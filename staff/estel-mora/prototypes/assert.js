@@ -36,5 +36,5 @@ function assertValuesPropertiesMatch(iterable, compare, callback) {
 module.exports = {
     assertHasValues: assertHasValues,
     assertEqualsValue: assertEqualsValue,
-    assertError: assertError,
+    assertValuesPropertiesMatch: assertValuesPropertiesMatch,
 }
