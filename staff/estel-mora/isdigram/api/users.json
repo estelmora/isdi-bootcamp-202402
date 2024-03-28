@@ -1,0 +1,29 @@
+[
+    {
+        "name": "estel",
+        "birthdate": "1999-03-10",
+        "email": "estel@email.com",
+        "username": "estel",
+        "password": "estel123",
+        "status": "online",
+        "id": "akwkgkb8pwo"
+    },
+    {
+        "name": "joel",
+        "birthdate": "1997-01-11",
+        "email": "joel@email.com",
+        "username": "joel",
+        "password": "joel123",
+        "status": "online",
+        "id": "d4igcag0s8o"
+    },
+    {
+        "name": "judit",
+        "birthdate": "2999-11-27",
+        "email": "judit@email.com",
+        "username": "judit",
+        "password": "judit123",
+        "status": "online",
+        "id": "byrfgj1i4ko"
+    }
+]
