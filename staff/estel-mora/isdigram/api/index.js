@@ -1,46 +1,34 @@
-const fs = require('fs')
+import express from 'express'
+import logic from './logic/index.mjs'
 
-console.log('start')
+const api = express()
 
-try {
-    fs.readFile('./users.json', 'utf8', (error, usersJson) => {
-        if (error) {
-            console.error(error)
+const jsonBodyParser = express.json()
 
-            return
-        }
+api.post('/users', jsonBodyParser, (req, res) => {
+    try {
+        const { name, birthdate, email, username, password } = req.body
 
-        const users = JSON.parse(usersJson)
-
-        const user = {
-            name: 'As Pirina',
-            birthdate: '2004-01-01',
-            email: 'as@pirina.com',
-            username: 'aspirina',
-            password: '123qwe123',
-            status: 'offline',
-            id: '3gfscipdb0c'
-        }
-
-        users.push(user)
-
-        const usersJson2 = JSON.stringify(users)
-
-        fs.writeFile('./users.json', usersJson2, error => {
+        logic.registerUser(name, birthdate, email, username, password, error => {
             if (error) {
-                console.error(error)
+                res.status(400).json({ error: error.constructor.name, message: error.message })
 
                 return
             }
 
-            console.log('end')
+            res.status(201).send()
         })
+    } catch (error) {
+        res.status(400).json({ error: error.constructor.name, message: error.message })
+    }
+})
 
-    })
-} catch (error) {
-    console.error(error)
-}
+// TODO login user -> POST /users/auth
 
-console.log('continue...')
+// TODO retrieve user -> GET /users
 
-//event loop: allows JavaScript to perform multiple tasks efficiently by delegating time-consuming tasks to the background
+// TODO retrieve posts -> GET /posts
+
+// ...
+
+api.listen(8080, () => console.log('API listening on port 8080'))
