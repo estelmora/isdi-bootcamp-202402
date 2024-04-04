@@ -1,5 +1,6 @@
-import db from '../data/index.mjs'
-import logic from './index.mjs'
+//@ts-nocheck
+import db from '../data/index'
+import logic from './index'
 
 import { expect } from 'chai'
 
@@ -441,13 +442,146 @@ describe('logic', () => {
             })
         })
     })
+    describe('logoutUser', () => {
+        it('should set user status to offline', done => {
+
+            const userId = 'testUserId' //Make sure the user exists in DB & make sure the user is online before logging out
+
+            db.users.updateOne({ id: userId }, { status: 'online' }, error => {
+                if (error) return done(error)
+
+                logic.logoutUser(userId, error => {
+                    if (error) return done(error)
+
+                    db.users.findOne({ id: userId }, (error, user) => {
+                        // after logging out check the user is 'offline'
+                        if (error) return done(error)
+
+                        expect(user.status).to.equal('offline')
+                        done()
+                    })
+                })
+            })
+        })
+    })
+
+    describe('getLoggedInUserId', () => {
+        it('should return the userId of the logged-in user', done => {
+            // Log in a user by setting a condition
+
+            db.sessions.insert({ userId: 'loggedInUserId' }, error => {
+                if (error) return done(error);
+
+                logic.getLoggedInUserId((error, userId) => {
+                    if (error) return done(error);
+
+                    expect(userId).to.equal('loggedInUserId');
+                    db.sessions.delete({ userId: 'loggedInUserId' }, err => done(err));
+                })
+            })
+        })
+
+        it('should return an error or null when no user is logged in', done => {
+            // Ensure there's no logged-in user.
+            // This could involve clearing the sessions table or however you track logged-in state.
+            db.sessions.clear(error => { // Pseudo-code, replace with actual cleanup logic
+                if (error) return done(error);
+
+                logic.getLoggedInUserId((error, userId) => {
+                    expect(error).to.exist.or; // Check if an error exists
+                    expect(userId).to.not.exist; // Alternatively, check if userId is null/undefined
+                    done();
+                })
+            })
+        })
+    })
+    describe('isUserLoggedIn', () => {
+        it('should return true if a user is logged in', done => {
+
+            logic.isUserLoggedIn((error, isLoggedIn) => {
+                if (error) return done(error);
+
+                expect(isLoggedIn).to.be.true;
+                done()
+            })
+        })
+
+        it('should return false if no user is logged in', done => {
+
+            logic.isUserLoggedIn((error, isLoggedIn) => {
+                if (error) return done(error)
+
+                expect(isLoggedIn).to.be.false
+                done()
+            })
+        })
+    })
+    describe('createPost', () => {
+        it('should correctly add a post with an image and text', done => {
+            const image = 'http://example.com/image.jpg';
+            const text = 'Hello, world!';
+            // Assuming a user is logged in
+            const userId = 'loggedInUserId';
+
+            // You might need to log in a user here or set a condition that mimics a user login
+
+            logic.createPost(image, text, error => {
+                if (error) return done(error);
+
+                // Assuming your db.posts query allows you to find a post by userId
+                db.posts.findOne({ author: userId }, (error, post) => {
+                    if (error) return done(error);
+
+                    expect(post).to.not.be.null;
+                    expect(post.image).to.equal(image);
+                    expect(post.text).to.equal(text);
+                    done();
+                })
+            })
+        })
+    })
+    describe('retrievePosts', () => {
+        it('should retrieve all posts', done => {
+
+
+            logic.retrievePosts((error, posts) => {
+                // show posts already saved in the database
+                if (error) return done(error);
+
+                expect(posts).to.be.an('array').that.is.not.empty;
+                const post = posts[0];
+                expect(post).to.have.all.keys('author', 'image', 'text', 'date');
+                done();
+            })
+        })
+    })
+    describe('removePost', () => {
+        it('should remove a post by its ID', done => {
+
+            const testPost = { /* details of the post */ };
+            db.posts.insertOne(testPost, (error, postId) => {
+                if (error) return done(error);
+
+                logic.removePost(postId, error => {
+                    if (error) return done(error);
+
+                    // Verify the post has been removed
+                    db.posts.findOne({ id: postId }, (error, post) => {
+                        if (error) return done(error);
+
+                        expect(post).to.be.null;
+                        done();
+                    })
+                })
+            })
+        })
+    })
 })
 
-// Template for additional functions
+// 🚨 Template for additional functions
 // describe('functionName', () => {
-//     it('should ...', (done) => {
-//         // Your test here
-//     });
-// });
+// it('should ...', (done) => {
+// Session Storage can't be used, instead (pass a callback, error)
+ 
 
-// TODO test all methods
+//  🚨 TRANSFORM IT TO EXPRESS.JS!!

@@ -1,16 +1,9 @@
 import { logger, showFeedback } from '../utils'
+
 import logic from '../logic'
 
-import React, { Component } from 'react';
-
-class Login extends Component {
-    constructor() {
-        logger.debug('Login')
-
-        super()
-    }
-
-    handleSubmit = event => {
+function Login(props) {
+    const handleSubmit = event => {
         event.preventDefault()
 
         const form = event.target
@@ -25,41 +18,38 @@ class Login extends Component {
 
             form.reset()
 
-            this.props.onUserLoggedIn()
+            props.onUserLoggedIn()
         } catch (error) {
             showFeedback(error)
         }
     }
 
-    handleRegisterClick = event => {
+    const handleRegisterClick = event => {
         event.preventDefault()
 
-        this.props.onRegisterClick()
+        props.onRegisterClick()
     }
 
-    render() {
-        logger.debug('Login -> render')
+    logger.debug('Login -> render')
 
-        return <main>
-            <h1>Login</h1>
+    return <main>
+        <h1>Login</h1>
 
-            <form onSubmit={this.handleSubmit}>
-                <label htmlFor="username">Username</label>
-                <input id="username" />
+        <form onSubmit={handleSubmit}>
+            <label htmlFor="username">Username</label>
+            <input id="username" />
 
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" />
+            <label htmlFor="password">Password</label>
+            <input type="password" id="password" />
 
-                <button className="round-button" type="submit">Login</button>
-            </form>
+            <button className="round-button" type="submit">Login</button>
+        </form>
 
-            <a href="" onClick={this.handleRegisterClick}>Register</a>
-        </main>
-    }
+        <a href="" onClick={handleRegisterClick}>Register</a>
+    </main>
 }
 
 export default Login
-
 //SUPER: es una función que se llama dentro de un constructor o de una clase que extiende de otra clase
 
 

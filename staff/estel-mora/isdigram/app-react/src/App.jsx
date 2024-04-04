@@ -1,4 +1,4 @@
-import { logger } from './utils'
+import { logger } from './utils/logger.mjs'
 import logic from './logic'
 
 import React, { Component } from 'react';
