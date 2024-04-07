@@ -36,13 +36,3 @@ class Logger {
 }
 
 export default Logger
-
-//Static Properties: The class defines static properties for log levels, allowing levels to be referenced without needing to instantiate the class
-
-//Instance Property - level: The default logging level is set to DEBUG. This property determines the minimum level of messages that will be logged. For example, if the level is set to WARN, then debug and info logs won't be shown
-
-//Private Method - #buildMessage: This method takes an array of message parts, joins them into a single string, and prefixes it with a timestamp. The # indicates it's a private method, meaning it can only be called within the class itself
-
-// Logging Methods (debug, info, warn, error, fatal): Each of these logs messages to the console at their respective levels. They use console.debug, console.info, console.warn, console.error with formatted messages. The visibility of these logs is controlled by the level property; only logs at or above the set level are output
-
-// %c in console methods is a formatting option used to apply CSS styles to the output message, enhancing log visibility

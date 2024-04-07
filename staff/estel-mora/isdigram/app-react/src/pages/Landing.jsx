@@ -1,6 +1,3 @@
-// Landing importa el modulo Component desde la biblioteca de React.
-// Classe landing que extiende de Component
-
 import { logger } from '../utils'
 
 function Landing(props) {
@@ -26,16 +23,3 @@ function Landing(props) {
 }
 
 export default Landing
-
-
-// event: es una acción de ejecución
-//this. hace referencia al objeto Landing 
-//props. accede a los métodos = this.props (acceden a propiedades + métodos Landing-Components)
-//a = anchor para insertar un enlace en un doc
-//href= para poner el enlace en el elemento
-
-//  logger.debug('Landing'): Logs a debug message indicating the Landing component is initialized super() // llama métodos de Component
-
-//super() // llama métodos de Component
-
-//constructor(){}instancia propiedades de Components

@@ -1,1 +1,23 @@
-[]
+[
+    {
+        "author": "o7bh52n5yao",
+        "image": "http://images.com/1",
+        "text": "hello post 1",
+        "date": "2024-04-05",
+        "id": "p13afef2iqo"
+    },
+    {
+        "author": "o7bh52n5yao",
+        "image": "http://images.com/2",
+        "text": "hello post 2",
+        "date": "2024-04-05",
+        "id": "1iw5gyy9467"
+    },
+    {
+        "author": "o7bh52n5yao",
+        "image": "http://images.com/3",
+        "text": "hello post 3",
+        "date": "2024-04-05",
+        "id": "mfovhi6jzxc"
+    }
+]

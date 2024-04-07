@@ -1,10 +1,17 @@
-
 import express from 'express'
-import logic from './logic/index'
+import logic from './logic/index.ts'
 
 const api = express()
 
 const jsonBodyParser = express.json()
+
+api.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', '*')
+    res.setHeader('Access-Control-Allow-Headers', '*')
+
+    next()
+})
 
 api.post('/users', jsonBodyParser, (req, res) => {
     try {
@@ -24,70 +31,60 @@ api.post('/users', jsonBodyParser, (req, res) => {
     }
 })
 
-//LOGIN
 api.post('/users/auth', jsonBodyParser, (req, res) => {
     try {
         const { username, password } = req.body
 
-        logic.loginUser(username, password, error => {
+        logic.loginUser(username, password, (error, userId) => {
             if (error) {
                 res.status(400).json({ error: error.constructor.name, message: error.message })
 
                 return
             }
 
-            res.status(201).send()
+            res.json(userId)
         })
     } catch (error) {
         res.status(400).json({ error: error.constructor.name, message: error.message })
     }
 })
 
-//GET
-api.post('/users', jsonBodyParser, (req, res) => {
+api.get('/users/:userId', (req, res) => {
     try {
-        const { userId, callback } = req.body
+        const { userId } = req.params
 
-        logic.retrieveUser(userId, callback, error => {
+        logic.retrieveUser(userId, (error, user) => {
             if (error) {
                 res.status(400).json({ error: error.constructor.name, message: error.message })
 
-                return callback(error)
+                return
             }
 
-            res.status(201).send()
+            res.json(user)
         })
     } catch (error) {
-        res.status(400).json({ userId, error: error.constructor.name, message: error.message })
+        res.status(400).json({ error: error.constructor.name, message: error.message })
     }
 })
 
-//GET POSTS
-api.post('/posts/', jsonBodyParser, (req, res) => {
+api.get('/posts', (req, res) => {
     try {
-        const { error, posts } = req.body
+        const { authorization: userId } = req.headers
 
-        logic.retrievePosts(userId, callback, error => {
+        logic.retrievePosts(userId, (error, posts) => {
             if (error) {
                 res.status(400).json({ error: error.constructor.name, message: error.message })
 
-                return callback(error)
+                return
             }
 
-            res.status(201).send()
+            res.json(posts)
         })
+
     } catch (error) {
-        res.status(400).json({ posts, error: error.constructor.name, message: error.message })
+        res.status(400).json({ error: error.constructor.name, message: error.message })
     }
 })
-
-
-
-// TODO login user -> POST /users/auth 💬
-
-// TODO retrieve user -> GET /users 💬
-
-// TODO retrieve posts -> GET /posts 💬
 
 // ...
 

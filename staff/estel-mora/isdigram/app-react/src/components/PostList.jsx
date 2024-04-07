@@ -1,68 +1,40 @@
 import { logger, showFeedback } from '../utils'
-import logic from '../logic.mjs'
 
-import React, { Component } from 'react';
-import Post from './Post'
+import logic from '../logic'
 
+function Post(props) {
+    const handleDeleteClick = postId => {
+        if (confirm('delete post?'))
+            try {
+                logic.removePost(postId)
 
-
-class PostList extends Component {
-    constructor() {
-        logger.debug('PostList')
-
-        super()
-
-        this.state = { posts: [] }
+                props.onDeleted()
+            } catch (error) {
+                showFeedback(error)
+            }
     }
 
-    loadPosts() {
-        logger.debug('PostList -> loadPosts')
+    const handleEditClick = post => props.onEditClick(post)
 
-        try {
-            const posts = logic.retrievePosts()
 
-            this.setState({ posts })
-        } catch (error) {
-            showFeedback(error)
-        }
-    }
+    logger.debug('Post -> render')
 
-    componentWillReceiveProps(newProps) {
-        logger.debug('PostList -> componentWillReceiveProps', JSON.stringify(this.props), JSON.stringify(newProps))
+    const { item: post } = props
 
-        //if (newProps.stamp !== this.props.stamp) this.loadPosts()
-        newProps.stamp !== this.props.stamp && this.loadPosts()
-    }
+    return <article key={post.id}>
+        <h3>{post.author.username}</h3>
 
-    componentDidMount() {
-        logger.debug('PostList -> componentDidMount')
+        <img src={post.image} />
 
-        this.loadPosts()
-    }
+        <p>{post.text}</p>
 
-    handlePostDeleted = () => this.loadPosts()
+        <time>{post.date}</time>
 
-    handleEditClick = post => this.props.onEditPostClick(post)
-
-    render() {
-        logger.debug('PostList -> render')
-
-        return <section>
-            {this.state.posts.map(post => <Post item={post} onEditClick={this.handleEditClick} onDeleted={this.handlePostDeleted} />)}
-        </section>
-    }
+        {logic.getLoggedInUserId() === post.author.id && <>
+            <button onClick={() => handleDeleteClick(post.id)}>🗑️</button>
+            <button onClick={() => handleEditClick(post)}>📝</button>
+        </>}
+    </article>
 }
 
-export default PostList
-
-
-// The render() method returns the JSX that should be rendered by this component
-
-//{/* this.state.posts.map: over the 'posts' array stored in the component's state, creating an 'article' element for each post. */}
-
-//<article key={post.id}> {/* Each 'article' element is given a unique 'key' prop, which is required by React when rendering lists of elements. */}
-
-// {/* xxxx */} comentar en REACT
-
-//alt="" : the alternative text is explicitly set to an empty string
-
+export default Post
