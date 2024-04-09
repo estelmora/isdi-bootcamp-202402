@@ -14,11 +14,17 @@ function Login(props) {
         logger.debug('Login -> handleSubmit', username, password)
 
         try {
-            logic.loginUser(username, password)
+            logic.loginUser(username, password, error => {
+                if (error) {
+                    showFeedback(error)
 
-            form.reset()
+                    return
+                }
 
-            props.onUserLoggedIn()
+                form.reset()
+
+                props.onUserLoggedIn()
+            })
         } catch (error) {
             showFeedback(error)
         }
@@ -50,6 +56,7 @@ function Login(props) {
 }
 
 export default Login
+
 //SUPER: es una función que se llama dentro de un constructor o de una clase que extiende de otra clase
 
 

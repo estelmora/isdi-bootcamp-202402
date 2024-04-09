@@ -1,4 +1,4 @@
-import Logger from './Logger'
+import Logger from './logger.mjs'
 
 const logger = new Logger
 

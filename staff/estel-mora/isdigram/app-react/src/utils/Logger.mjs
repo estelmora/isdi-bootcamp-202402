@@ -15,11 +15,11 @@ class Logger {
     }
 
     debug(...messages) {
-        this.level < Logger.INFO && console.debug(`%c${this.#buildMessage(messages)}`, 'color: greenyellow')
+        this.level < Logger.INFO && console.debug(`%c${this.#buildMessage(messages)}`, 'color: green')
     }
 
     info(...messages) {
-        this.level < Logger.WARN && console.info(`%c${this.#buildMessage(messages)}`, 'color: dodgerblue')
+        this.level < Logger.WARN && console.info(`%c${this.#buildMessage(messages)}`, 'color: blue')
     }
 
     warn(...messages) {
@@ -27,7 +27,7 @@ class Logger {
     }
 
     error(...messages) {
-        this.level < Logger.FATAL && console.error(`%c${this.#buildMessage(messages)}`, 'color: tomato')
+        this.level < Logger.FATAL && console.error(`%c${this.#buildMessage(messages)}`, 'color: red')
     }
 
     fatal(...messages) {

@@ -2,39 +2,57 @@ import { logger, showFeedback } from '../utils'
 
 import logic from '../logic'
 
-function Post(props) {
-    const handleDeleteClick = postId => {
-        if (confirm('delete post?'))
-            try {
-                logic.removePost(postId)
+import { useState, useEffect } from 'react'
+import Post from './Post'
 
-                props.onDeleted()
-            } catch (error) {
-                showFeedback(error)
-            }
+function PostList(props) {
+    const [posts, setPosts] = useState([])
+
+    const loadPosts = () => {
+        debugger
+        logger.debug('PostList -> loadPosts')
+
+        try {
+            logic.retrievePosts((error, posts) => {
+                if (error) {
+                    showFeedback(error)
+
+                    return
+                }
+
+                setPosts(posts)
+            })
+        } catch (error) {
+            showFeedback(error)
+        }
     }
 
-    const handleEditClick = post => props.onEditClick(post)
+    // componentWillReceiveProps(newProps) {
+    //     logger.debug('PostList -> componentWillReceiveProps', JSON.stringify(props), JSON.stringify(newProps))
 
+    //     //if (newProps.stamp !== props.stamp) loadPosts()
+    //     newProps.stamp !== props.stamp && this.loadPosts()
+    // }
 
-    logger.debug('Post -> render')
+    // componentDidMount() {
+    //     logger.debug('PostList -> componentDidMount')
 
-    const { item: post } = props
+    //     this.loadPosts()
+    // }
 
-    return <article key={post.id}>
-        <h3>{post.author.username}</h3>
+    useEffect(() => {
+        loadPosts()
+    }, [props.stamp])
 
-        <img src={post.image} />
+    const handlePostDeleted = () => loadPosts()
 
-        <p>{post.text}</p>
+    const handleEditClick = post => props.onEditPostClick(post)
 
-        <time>{post.date}</time>
+    logger.debug('PostList -> render')
 
-        {logic.getLoggedInUserId() === post.author.id && <>
-            <button onClick={() => handleDeleteClick(post.id)}>🗑️</button>
-            <button onClick={() => handleEditClick(post)}>📝</button>
-        </>}
-    </article>
+    return <section>
+        {posts.map(post => <Post key={post.id} item={post} onEditClick={handleEditClick} onDeleted={handlePostDeleted} />)}
+    </section>
 }
 
-export default Post
+export default PostList
