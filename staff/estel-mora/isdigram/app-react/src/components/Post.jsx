@@ -28,7 +28,7 @@ function Post(props) {
 
         <p>{post.text}</p>
 
-        <time>{post.date}</time>
+        <time>{new Date(post.date).toLocaleString('en-CA')}</time>
 
         {logic.getLoggedInUserId() === post.author.id && <>
             <button onClick={() => handleDeleteClick(post.id)}>🗑️</button>

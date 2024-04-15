@@ -9,7 +9,6 @@ function PostList(props) {
     const [posts, setPosts] = useState([])
 
     const loadPosts = () => {
-        debugger
         logger.debug('PostList -> loadPosts')
 
         try {
@@ -26,19 +25,6 @@ function PostList(props) {
             showFeedback(error)
         }
     }
-
-    // componentWillReceiveProps(newProps) {
-    //     logger.debug('PostList -> componentWillReceiveProps', JSON.stringify(props), JSON.stringify(newProps))
-
-    //     //if (newProps.stamp !== props.stamp) loadPosts()
-    //     newProps.stamp !== props.stamp && this.loadPosts()
-    // }
-
-    // componentDidMount() {
-    //     logger.debug('PostList -> componentDidMount')
-
-    //     this.loadPosts()
-    // }
 
     useEffect(() => {
         loadPosts()

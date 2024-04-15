@@ -56,17 +56,3 @@ function Login(props) {
 }
 
 export default Login
-
-//SUPER: es una función que se llama dentro de un constructor o de una clase que extiende de otra clase
-
-
-// form.reset(): reinicia el valor de los campos una vez el inicio correcto
-
-//this.props.onUserLoggedIn():  Notifica al componente padre que el usuario ha iniciado sesión con éxito
-
-//catch(error) + utils.showfeedback: muestra si hay error durante el inicio de sesion utilziando el modulo utils.
-
-//this.props.onRegisterClick(): notifica al componente padre que el usuario quiere moverse a "register"
-
-//Componente Padre= "login" que extende de Components.
-// this. = instancia de login y super( accede a las propiedades)

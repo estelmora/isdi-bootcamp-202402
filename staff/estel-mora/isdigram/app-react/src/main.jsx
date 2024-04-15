@@ -11,11 +11,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <App />
     // </React.StrictMode>,
 )
-
-
-
-//RENDER es un metodo nativo de react,  "pintar/mostrar en pantalla", y dentro de render se pone lo que se quiere pintar
-
-
-// react.StrictMode: para detectar problemas en la APP, realiza advertencias y comprueba. 
-// en este caso, aplica en lo que envuelve "APP"
