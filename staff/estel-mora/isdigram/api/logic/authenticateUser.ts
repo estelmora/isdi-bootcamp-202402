@@ -1,31 +1,25 @@
 import { validate, errors } from 'com'
 
+import { User } from '../data/index.ts'
+
 const { SystemError, CredentialsError, NotFoundError } = errors
 
-function loginUser(username: string, password: string, callback: Function) {
+function authenticateUser(username: string, password: string): Promise<string> {
     validate.text(username, 'username', true)
     validate.password(password)
-    validate.callback(callback)
 
-    this.users.findOne({ username })
+    return User.findOne({ username })
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) {
-                callback(new NotFoundError('user not found'))
+            if (!user)
+                throw new NotFoundError('user not found')
 
-                return
-            }
+            if (user.password !== password)
+                throw new CredentialsError('wrong password')
 
-            if (user.password !== password) {
-                callback(new CredentialsError('wrong password'))
-
-                return
-            }
-
-            this.users.updateOne({ _id: user._id }, { $set: { status: 'online' } })
-                .then(() => callback(null, user._id.toString()))
-                .catch(error => callback(new SystemError(error.message)))
+            return user.id
         })
-        .catch(error => callback(new SystemError(error.message)))
+
 }
 
-export default loginUser
+export default authenticateUser

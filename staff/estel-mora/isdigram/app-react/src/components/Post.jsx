@@ -1,28 +1,32 @@
-import { logger, showFeedback } from '../utils'
+import { logger } from '../utils'
+
+import { Link } from 'react-router-dom'
 
 import logic from '../logic'
 
-function Post(props) {
-    const handleDeleteClick = postId => {
-        if (confirm('delete post?'))
-            try {
-                logic.removePost(postId)
+import { useContext } from '../context'
 
-                props.onDeleted()
-            } catch (error) {
-                showFeedback(error)
-            }
-    }
+function Post({ item: post, onEditClick, onDeleted }) {
+    const { showFeedback, showConfirm } = useContext()
 
-    const handleEditClick = post => props.onEditClick(post)
+    const handleDeleteClick = postId =>
+        showConfirm('delete post?', confirmed => {
+            if (confirmed)
+                try {
+                    logic.removePost(postId)
+                        .then(() => onDeleted())
+                        .catch(error => showFeedback(error.message, 'error'))
+                } catch (error) {
+                    showFeedback(error.message)
+                }
+        })
 
+    const handleEditClick = post => onEditClick(post)
 
     logger.debug('Post -> render')
 
-    const { item: post } = props
-
     return <article>
-        <h3>{post.author.username}</h3>
+        <h3><Link to={`/profile/${post.author.username}`}>{post.author.username}</Link></h3>
 
         <img src={post.image} />
 

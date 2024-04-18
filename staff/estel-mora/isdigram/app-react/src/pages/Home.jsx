@@ -1,4 +1,4 @@
-import { logger, showFeedback } from '../utils'
+import { logger } from '../utils'
 
 import logic from '../logic'
 
@@ -7,25 +7,26 @@ import PostList from '../components/PostList'
 import CreatePost from '../components/CreatePost'
 import EditPost from '../components/EditPost'
 
-function Home(props) {
+import { Routes, Route } from 'react-router-dom'
+import Profile from '../components/Profile'
+
+import { useContext } from '../context'
+
+function Home({ onUserLoggedOut }) {
     const [user, setUser] = useState(null)
     const [view, setView] = useState(null)
     const [stamp, setStamp] = useState(null)
     const [post, setPost] = useState(null)
 
+    const { showFeedback } = useContext()
+
     useEffect(() => {
         try {
-            logic.retrieveUser((error, user) => {
-                if (error) {
-                    showFeedback(error)
-
-                    return
-                }
-
-                setUser(user)
-            })
+            logic.retrieveUser()
+                .then(setUser)
+                .catch(error => showFeedback(error.message, 'error'))
         } catch (error) {
-            showFeedback(error)
+            showFeedback(error.message)
         }
     }, [])
 
@@ -46,7 +47,7 @@ function Home(props) {
         } catch (error) {
             logic.cleanUpLoggedInUserId()
         } finally {
-            props.onUserLoggedOut()
+            onUserLoggedOut()
         }
     }
 
@@ -75,7 +76,10 @@ function Home(props) {
         </header>
 
         <main className="my-[50px] px-[5vw]">
-            <PostList stamp={stamp} onEditPostClick={handleEditPostClick} />
+            <Routes>
+                <Route path="/" element={<PostList stamp={stamp} onEditPostClick={handleEditPostClick} />} />
+                <Route path="/profile/:username" element={<Profile />} />
+            </Routes>
 
             {view === 'create-post' && <CreatePost onCancelClick={handleCreatePostCancelClick} onPostCreated={handlePostCreated} />}
 

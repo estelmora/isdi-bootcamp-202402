@@ -1,8 +1,12 @@
-import { logger, showFeedback } from '../utils'
+import { logger } from '../utils'
 
 import logic from '../logic'
 
-function Register(props) {
+import { useContext } from '../context'
+
+function Register({ onUserRegistered, onLoginClick }) {
+    const { showFeedback } = useContext()
+
     const handleSubmit = event => {
         event.preventDefault()
 
@@ -15,26 +19,22 @@ function Register(props) {
         const password = form.password.value
 
         try {
-            logic.registerUser(name, birthdate, email, username, password, error => {
-                if (error) {
-                    showFeedback(error)
+            logic.registerUser(name, birthdate, email, username, password)
+                .then(() => {
+                    form.reset()
 
-                    return
-                }
-
-                form.reset()
-
-                props.onUserRegistered()
-            })
+                    onUserRegistered()
+                })
+                .catch(error => showFeedback(error.message, 'error'))
         } catch (error) {
-            showFeedback(error)
+            showFeedback(error.message)
         }
     }
 
     const handleLoginClick = event => {
         event.preventDefault()
 
-        props.onLoginClick()
+        onLoginClick()
     }
 
     logger.debug('Register -> render')

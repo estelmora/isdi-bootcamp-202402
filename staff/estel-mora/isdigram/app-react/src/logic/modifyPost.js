@@ -1,4 +1,5 @@
 import { validate, errors } from 'com'
+const { NotFoundError } = errors
 
 function modifyPost(postId, text) {
     validate.text(postId, 'postId', true)
@@ -6,7 +7,7 @@ function modifyPost(postId, text) {
 
     const post = db.posts.findOne(post => post.id === postId)
 
-    if (!post) throw new Error('post not found')
+    if (!post) throw new NotFoundError('post not found')
 
     if (post.author !== sessionStorage.userId) throw new Error('post does not belong to user')
 
