@@ -2,7 +2,8 @@ import { errors } from 'com'
 
 
 function retrievePosts() {
-    return fetch('http://localhost:8080/posts', {
+    validate.token(sessionStorage.token)
+    return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         headers: {
             'Authorization': `Bearer ${sessionStorage.token}`
         }

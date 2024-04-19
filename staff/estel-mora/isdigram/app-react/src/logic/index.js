@@ -23,7 +23,7 @@ const logic = {
     createPost,
     retrievePosts,
     removePost,
-    modifyPost
+    modifyPost,
 }
 
 export default logic

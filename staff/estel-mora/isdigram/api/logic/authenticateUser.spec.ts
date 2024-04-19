@@ -1,3 +1,4 @@
+import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 
 import { User } from '../data/index.ts'
@@ -5,6 +6,8 @@ import { User } from '../data/index.ts'
 import logic from './index.ts'
 import { expect } from 'chai'
 import { errors } from 'com'
+
+dotenv.config()
 
 const { CredentialsError, NotFoundError } = errors
 
