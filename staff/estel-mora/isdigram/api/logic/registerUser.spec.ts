@@ -13,7 +13,7 @@ dotenv.config()
 const { DuplicityError } = errors
 
 describe('registerUser', () => {
-    before(() => mongoose.connect('mongodb://localhost:27017/test'))
+    before(() => mongoose.connect(process.env.MONGODB_TEST_URL))
 
     it('succeeds a new user', () =>
         User.deleteMany()

@@ -25,9 +25,9 @@ function Register({ onUserRegistered, onLoginClick }) {
 
                     onUserRegistered()
                 })
-                .catch(error => showFeedback(error.message, 'error'))
+                .catch(error => showFeedback(error, 'error'))
         } catch (error) {
-            showFeedback(error.message)
+            showFeedback(error)
         }
     }
 

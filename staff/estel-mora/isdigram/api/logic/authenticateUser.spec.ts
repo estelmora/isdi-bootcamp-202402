@@ -12,7 +12,7 @@ dotenv.config()
 const { CredentialsError, NotFoundError } = errors
 
 describe('authenticateUser', () => {
-    before(() => mongoose.connect('mongodb://localhost:27017/test'))
+    before(() => mongoose.connect(process.env.MONGODB_TEST_URL))
 
     it('succeeds on existing user and correct credentials', () =>
         User.deleteMany()
