@@ -1,0 +1,27 @@
+body {
+    background-color: #F9FFFE;
+    font-family: 'Georgia', serif;
+    padding: 10px;
+    flex-direction: column;
+
+
+}
+
+.titles {
+    font-size: 26px;
+    align-items: center;
+}
+
+.register-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh
+}
