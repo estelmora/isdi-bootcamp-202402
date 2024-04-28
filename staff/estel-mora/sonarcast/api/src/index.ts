@@ -1,3 +1,7 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: __dirname + '/.env' });
+
+
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 
@@ -17,9 +21,8 @@ app.post('/podcasts', async (req: Request, res: Response) => {
     res.json(createdPodcast);
 });
 
-mongoose.connect(
-    'mongodb+srv://estelmus:sardina2024@sonarcast.lnkdbz9.mongodb.net/?retryWrites=true&w=majority&appName=sonarcast'
-).then(() => {
+// console.log(process.env)
+mongoose.connect(process.env.MONGO_URL!).then(() => {
     console.log(`listening on port ${PORT}`);
     app.listen(PORT);
 });
