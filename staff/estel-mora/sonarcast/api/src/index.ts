@@ -24,7 +24,6 @@ app.get('/podcasts', async (req: Request, res: Response) => {
     const podcasts = await Podcast.find();
     //send back the array to the ui
     res.json(podcasts)
-
 })
 
 app.post('/podcasts', async (req: Request, res: Response) => {
@@ -34,6 +33,20 @@ app.post('/podcasts', async (req: Request, res: Response) => {
     const createdPodcast = await newPodcast.save();
     res.json(createdPodcast);
 });
+
+
+app.delete('/podcasts/:podcastId', async (req: Request, res: Response) => {
+
+    //get the podcast id from the url
+    const podcastId = req.params.podcastId;
+    // delete the podcast from mongo
+    const podcast = await Podcast.findByIdAndDelete(podcastId)
+    // return the deleted podcast to the user who made the request
+    res.json({
+        message: "successfully deleted podcast ❌"
+    })
+})
+
 
 // console.log(process.env)
 mongoose.connect(process.env.MONGO_URL!).then(() => {

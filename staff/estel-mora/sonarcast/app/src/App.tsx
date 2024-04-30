@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
+import { deletePodcast } from './methods/deletePodcast';
+import { TPodcasts, getPodcasts } from './methods/getPodcasts';
 import './App.css'
-type TPodcasts = {
-    title: string;
-    _id: string;
-}
+import { uploadPodcasts } from './methods/uploadPodcasts';
 
 
 function App() {
@@ -12,28 +12,24 @@ function App() {
 
     async function handleUploadPodcast(e: React.FormEvent) {
         e.preventDefault();
-        await fetch('http://localhost:5001/podcasts', {
-            method: 'POST',
-            body: JSON.stringify({
-                transcript,
-            }),
-            headers: {
-                "Content-Type": 'application/json',
-            }
-        })
+        const podcast = await uploadPodcasts(transcript)
+        setPodcasts([...podcasts, podcast])
         setTranscript("");
     }
+
+    async function handleDeletePodcast(podcastId: string) {
+        await deletePodcast(podcastId)
+        setPodcasts(podcasts.filter(podcast => podcast._id !== podcastId))
+    }
+
 
     useEffect(() => {
         async function fetchPodcasts() {
             const response = await fetch("http://localhost:5001/podcasts")
             const newPodcasts = await response.json();
             setPodcasts(newPodcasts);
-            console.log(newPodcasts)
         }
         fetchPodcasts();
-
-
     }, []);
 
 
@@ -42,8 +38,11 @@ function App() {
         <div className="App">
             <ul className='podcasts'>
                 {podcasts.map((podcast) => (
-                    <li key={podcast._id}>{podcast.transcript}</li>
-
+                    <li key={podcast._id}>
+                        <button onClick={() => handleDeletePodcast(podcast._id)}>Delete</button>
+                        {podcast.transcript}
+                        <Link to={`podcasts/${podcast._id}`}>{podcast.transcript}Your Name</Link>
+                    </li>
                 ))}
             </ul>
 
@@ -64,4 +63,4 @@ function App() {
     )
 }
 
-export default App;
+export default App
