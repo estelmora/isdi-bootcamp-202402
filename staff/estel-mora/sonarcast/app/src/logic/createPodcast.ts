@@ -1,10 +1,10 @@
 import { API_URL } from "./config";
 
-export async function uploadPodcasts(transcript: string) {
+export async function createPodcast(title: string) {
     const response = await fetch(`${API_URL}/podcasts`, {
         method: 'POST',
         body: JSON.stringify({
-            transcript,
+            title,
         }),
         headers: {
             "Content-Type": 'application/json',

@@ -1,15 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
-
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
-import Podcast from './Podcast.tsx';
+
+import Home from './pages/Home.tsx'
+import Podcast from './pages/Podcast.tsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
   },
   {
     path: "/podcasts/:podcastId",
