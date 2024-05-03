@@ -3,12 +3,13 @@ dotenv.config({ path: __dirname + '/.env' });
 
 import express from 'express';
 import mongoose from 'mongoose';
-import cors from 'cors'
+import cors from 'cors';
 
-import Podcast from './data/Podcast';
 import { getPodcastsController } from './controllers/getPodcastsController';
 import { createPodcastController } from './controllers/createPodcastController';
 import { deletePodcastController } from './controllers/deletePodcastController';
+import { createTranscriptController } from './controllers/createTranscriptController';
+import fileUpload from 'express-fileupload';
 
 const PORT = 5001;
 
@@ -20,12 +21,15 @@ app.use(
     })
 );
 app.use(express.json());
+app.use(fileUpload())
 
 app.get('/podcasts', getPodcastsController);
 
 app.post('/podcasts', createPodcastController);
 
 app.delete('/podcasts/:podcastId', deletePodcastController);
+
+app.post('/files', createTranscriptController);
 
 mongoose.connect(process.env.MONGO_URL!).then(() => {
     console.log(`listening on port ${PORT}`);
