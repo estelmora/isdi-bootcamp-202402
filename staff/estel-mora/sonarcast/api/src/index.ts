@@ -10,6 +10,7 @@ import { createPodcastController } from './controllers/createPodcastController';
 import { deletePodcastController } from './controllers/deletePodcastController';
 import { createTranscriptController } from './controllers/createTranscriptController';
 import { getPodcastController } from './controllers/getPodcastController';
+import { updatePodcastController } from './controllers/updatePodcastController';
 import fileUpload from 'express-fileupload';
 
 const PORT = 5001;
@@ -29,6 +30,7 @@ app.post('/podcasts', createPodcastController);
 
 app.get('/podcasts/:podcastId', getPodcastController);
 app.delete('/podcasts/:podcastId', deletePodcastController);
+app.patch('/podcasts/:podcastId', updatePodcastController);
 
 app.post('/files', createTranscriptController);
 

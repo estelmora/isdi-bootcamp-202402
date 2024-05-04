@@ -5,22 +5,28 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import { API_URL } from "../logic/config";
 
+import { updatePodcast } from "../logic/updatePodcast";
+
 interface Podcast {
     title: string;
     transcript: string;
     date: Date | null;
+    ideas?: string;
 }
 
 export default function Podcast() {
 
-    const { podcastId } = useParams();
+    const { podcastId } = useParams<{ podcastId?: string }>();
     const [podcast, setPodcast] = useState<Podcast>({
         title: '',
         transcript: '',
-        date: null
+        date: null,
+        ideas: ''
     })
 
     useEffect(() => {
+        if (!podcastId) return
+
         const fetchPodcast = async () => {
             try {
                 const { data } = await axios.get(`${API_URL}/podcasts/${podcastId}`)
@@ -36,9 +42,8 @@ export default function Podcast() {
         fetchPodcast()
     }, [podcastId])
 
-    async function generateIdeas() {
-        // Cridar OpenAI amb podcast.transcript i prompt
-        // Fer PATCH a /podcast/{podcastId} amb { ideas: ideas }
+    async function handleUpdatePodcast(podcastId: string) {
+        await updatePodcast(podcastId)
     }
 
     return (
@@ -54,8 +59,10 @@ export default function Podcast() {
                     <div className="transcript-text">{podcast.transcript}</div>
                 </div>
                 <div className="ideas">Ideas
-                    {/* <button onClick={generateIdeas()}>generate ideas</button> */}
-                    <div className="ideas-list">ideas list</div>
+                    {podcastId && (
+                        <button onClick={() => handleUpdatePodcast(podcastId)}>Generate Ideas</button>
+                    )}
+                    <div className="ideas-list">{podcast.ideas ? podcast.ideas : "Nothing to see here."}</div>
                 </div>
 
             </div>

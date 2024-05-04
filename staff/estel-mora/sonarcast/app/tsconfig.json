@@ -25,7 +25,8 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    "src"
+    "src",
+    "../api/src/utils/generateChatCompletion.ts"
   ],
   "references": [
     {
