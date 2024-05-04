@@ -19,9 +19,9 @@ function Home() {
         e.preventDefault();
         uploadFile();
         const podcast = await createPodcast(title, transcript)
-        setPodcasts([...podcasts, podcast])
-        setTitle("");
-        setFile(null);
+        setPodcasts([...podcasts, podcast]) // afegir els podcasts actuals + podcast d'ara = .push
+        setTitle(""); // reset al title, i es quedi buit
+        setFile(null); // reset al "choose file"
     }
 
     async function handleDeletePodcast(podcastId: string) {

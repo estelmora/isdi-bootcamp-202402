@@ -1,7 +1,8 @@
-import mongoose from 'mongoose';
+import mongoose, { ObjectId } from 'mongoose';
 
 const Schema = mongoose.Schema
 const ObjectId = mongoose.Types.ObjectId
+
 
 const PodcastSchema = new Schema({
     title: String,

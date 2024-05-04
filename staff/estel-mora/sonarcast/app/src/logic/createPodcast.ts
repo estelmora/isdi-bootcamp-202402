@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { API_URL } from "./config";
 
 export async function createPodcast(title: string, transcript: string) {
