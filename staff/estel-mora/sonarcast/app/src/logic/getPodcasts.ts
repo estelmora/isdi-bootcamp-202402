@@ -2,7 +2,7 @@ import { API_URL } from "./config";
 
 export type TPodcasts = {
     title: string;
-    cards: string[];
+    transcript: string[];
     _id: string;
 }
 
