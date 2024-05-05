@@ -12,8 +12,8 @@ export async function createTranscriptController(req: Request, res: Response) {
 
     const uploadedFile = req.files.podcast as fileUpload.UploadedFile; // es guarda l'arxiu en binari (.podcast)
 
-    // Save file temporarily
-    const fileName = uploadedFile.name.replace(" ", "-");
+    // Rename file to podcast and save temporarily
+    const fileName = `podcast${uploadedFile.name.match(/\.\w+$/)}`
     await uploadedFile.mv(`./src/files/${fileName}`);  //mover el archivo y penjarlo en una carpeta
 
     // Run Whisper on the uploaded file
