@@ -113,5 +113,6 @@ function Home() {
         </div>
     )
 }
+//afegir footer amb els "copyright sonar cast 2024 mesage"
 
 export default Home

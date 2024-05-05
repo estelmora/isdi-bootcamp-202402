@@ -25,37 +25,47 @@ this is what the software can do on version 0
 
 - Idea Generator & Content Optimitzation  The service offers a creative tool that suggests trending topics and key words based on the content of the podcast and what's currently trending, to help podcast creators generate content that is relevant and has the potential to engage more listeners.
 
-### Use Cases
+### Use Cases 📝
 - podcast list by title
 - xxx nom de les funcions seguramnet
 
-## Technical
+
+### UI Design 📝
+[Figma](link thttpmsmsmd/.com)
+
+## Technical 📝
 
 ### Modules
 - api (server logic)
 - app (client interface)
 - com (common utils, tools, ...)
 
-### Technologies
+### Technologies 📝
 
 - TypeScript
 - React
 - Express
 - Node
 - MongoDB
+- Mongo Atlas
 - OpenAI
 - Whisper (transcript audio to text)
+- Flowbite 
 
 ### Data Model
 
 User
 - id (auto, required)
 - name (string, required)
+- surname(string, required)
 - email (string, required)
 - password (string, required)
 
 Podcast
 
 - id (auto, required)
-- author (User.id, required) 
-- transcript (string, optional)
+- title (string, required)
+- transcript (string, required)
+- ideas (string)
+- date (auto, required)
+- author (userId, required)

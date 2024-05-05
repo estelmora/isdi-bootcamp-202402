@@ -1,4 +1,5 @@
 import { API_URL } from "./config";
+// import { validate, errors } from 'com'
 
 export type TPodcasts = {
     title: string;

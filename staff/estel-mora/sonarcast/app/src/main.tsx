@@ -7,6 +7,9 @@ import Register from './pages/Register.tsx';
 import Podcast from './pages/Podcast.tsx';
 import Login from './pages/Login.tsx'
 
+import { logger, Logger } from './utils'
+logger.level = Logger.DEBUG
+
 const router = createBrowserRouter([
   {
     path: "/",
