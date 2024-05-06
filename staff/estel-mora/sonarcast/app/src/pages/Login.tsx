@@ -1,73 +1,39 @@
-import Navbar from "../components/Navbar";
-
-// import { logger } from "../utils";
-// import { useContext } from '../context'
-
-// function Login({ onUserLoggedIn, onRegisterClick }) {
-//     const { showFeedback } = useContext()
-
-//     const handleSubmit = event => {
-//         event.preventDefault()
-
-//         const form = event.target
-
-//         const username = form.username.value
-//         const password = form.password.value
-
-//         logger.debug('Login -> handleSubmit', username, password)
-
-//         try {
-//             logic.loginUser(username, password)
-//                 .then(() => {
-//                     form.reset()
-
-//                     onUserLoggedIn()
-//                 })
-//                 .catch(error => showFeedback(error, 'error'))
-//         } catch (error) {
-//             showFeedback(error)
-//         }
-//     }
-
-//     const handleRegisterClick = event => {
-//         event.preventDefault()
-
-//         onRegisterClick()
-//     }
-
-//     logger.debug('Login -> render')
-
-//     return <main>
-//         <h1>Login</h1>
-
-//         <form onSubmit={handleSubmit}>
-//             <label htmlFor="username">Username</label>
-//             <input id="username" />
-
-//             <label htmlFor="password">Password</label>
-//             <input type="password" id="password" />
-
-//             <button className="round-button" type="submit">Login</button>
-//         </form>
-
-//         <a href="" onClick={handleRegisterClick}>Register</a>
-//     </main>
-// }
-
+import { loginUser } from "../logic/loginUser";
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+    const navigate = useNavigate()
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        const form = e.currentTarget
+
+        const username = form.email.value
+        const password = form.password.value
+
+        loginUser(username, password)
+            .then(() => {
+                form.reset()
+
+                navigate('/')
+            })
+    }
+
     return (
         <div>
-            <Navbar />
             <div>
                 <h1> Log In</h1>
-                <form className="login-form" >
-                    <input type="email" id="email" placeholder="email@.com" />
-                    <input type="password" id="password" placeholder="password" />
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <label htmlFor="email">Email</label>
+                    <input id="email" />
 
-                    <button type="submit" className="login-button">Log In</button>
-                    <a style={{ color: 'orange' }} >You don't have an account? <strong>Click here</  strong> to Register</a>
+                    <label htmlFor="password">Password</label>
+                    <input type="password" id="password" />
+
+                    <button type="submit">Login</button>
                 </form>
+                <a style={{ color: 'orange' }} >Don't have an account? <strong>Click here</  strong> to Register</a>
             </div>
         </div>
 

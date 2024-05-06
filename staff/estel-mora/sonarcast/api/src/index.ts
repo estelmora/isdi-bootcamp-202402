@@ -11,6 +11,8 @@ import { deletePodcastController } from './controllers/deletePodcastController';
 import { createTranscriptController } from './controllers/createTranscriptController';
 import { getPodcastController } from './controllers/getPodcastController';
 import { updatePodcastController } from './controllers/updatePodcastController';
+import { registerUserController } from './controllers/registerUserController';
+import { authenticateUserController } from './controllers/authenticateUserController';
 import fileUpload from 'express-fileupload';
 
 const PORT = 5001;
@@ -33,6 +35,9 @@ app.delete('/podcasts/:podcastId', deletePodcastController);
 app.patch('/podcasts/:podcastId', updatePodcastController);
 
 app.post('/files', createTranscriptController);
+
+app.post('/users', registerUserController);
+app.post('/users/auth', authenticateUserController);
 
 mongoose.connect(process.env.MONGO_URL!).then(() => {
     console.log(`listening on port ${PORT}`);

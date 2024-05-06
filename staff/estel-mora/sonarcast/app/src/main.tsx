@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider, } from "react-router-dom";
+import './index.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from './pages/Home.tsx';
 import Register from './pages/Register.tsx';
 import Podcast from './pages/Podcast.tsx';
 import Login from './pages/Login.tsx'
-
-import { logger, Logger } from './utils'
-logger.level = Logger.DEBUG
 
 const router = createBrowserRouter([
   {
