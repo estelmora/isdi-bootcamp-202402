@@ -9,11 +9,11 @@ Leveraging a secondary AI, integrated seamlessly with various APIs, the platform
 ![](https://media.giphy.com/media/GXRLwv0JGeLQiWipb8/giphy.gif?cid=ecf05e47pe2k824ndf2lkms60dx0vg133iaisn8rj2xdzxhr&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 
 ## Functional Description
-this is what the software can do on version 0
+### Use Cases
 
-- Landing Page: New users are greeted with a landing page that provides them with two options: to register as a new user or to log in if they already have an account.
+This is what the software can do on version 0
 
-- Register User:new users can sign in, by providing some personal data such as: name, email and password. 
+- Register User:new users can sign in, by providing some personal data such as: name, surname,  email and password. 
 
 - Home Page: Once logged in, users are directed to the home page, whichwill be the hub from where all activities are carried out. A logout button is available for users to exit their accounts.
 
@@ -23,34 +23,34 @@ this is what the software can do on version 0
 
 - Content Transcription: the service genegerates a transcript from the listened podcast up to 45 minuts long, therefore this leads to the next functionality
 
-- Idea Generator & Content Optimitzation  The service offers a creative tool that suggests trending topics and key words based on the content of the podcast and what's currently trending, to help podcast creators generate content that is relevant and has the potential to engage more listeners.
+- Idea Generator & Content Optimitzation  The service offers a creative tool that suggests unlimited trending topics and key words based on the content of the podcast and what's currently trending, to help podcast creators generate content that is relevant and has the potential to engage more listeners.
 
-### Use Cases 📝
+### User Stories 📝
 - podcast list by title
 - xxx nom de les funcions seguramnet
 
 
 ### UI Design 📝
-[Figma](link thttpmsmsmd/.com)
+[Figma](https://www.figma.com/design/Bn8AS2vyTPx90Ol2IFIYLk/Isdi-Project?node-id=0%3A1&t=cBWHgKpqZojv6tOc-1)
 
-## Technical 📝
-
+## Technical Description
 ### Modules
 - api (server logic)
 - app (client interface)
 - com (common utils, tools, ...)
 
-### Technologies 📝
-
+### Technologies 
 - TypeScript
 - React
 - Express
 - Node
 - MongoDB
 - Mongo Atlas
+- Mogoose
 - OpenAI
 - Whisper (transcript audio to text)
-- Flowbite 
+- Tailwind CSS
+- Mocha & Chai
 
 ### Data Model
 
