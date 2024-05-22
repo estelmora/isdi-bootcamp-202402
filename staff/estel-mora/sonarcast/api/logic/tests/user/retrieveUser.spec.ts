@@ -1,38 +1,53 @@
-// import dotenv from 'dotenv'
-// dotenv.config()
+import dotenv from 'dotenv'
+dotenv.config()
 
-// import mongoose from 'mongoose'
-// import { expect } from 'chai'
-// import { errors } from '../../../utils/errors.ts'
+import mongoose from 'mongoose'
+import { expect } from 'chai'
+import { errors } from '../../../utils/errors.ts'
 
-// import { User } from '../../../data/index.ts'
-// import logic from '../../index.ts'
+import { User } from '../../../data/index.ts'
+import logic from '../../index.ts'
 
-// const { Types: { ObjectId } } = mongoose
-// const { NotFoundError } = errors
+const { Types: { ObjectId } } = mongoose
+const { SystemError, NotFoundError } = errors
 
-// describe('retrieveUser', () => {
-//     before(() => mongoose.connect(process.env.MONGODB_TEST_URL))
+describe('retrieveUser', () => {
+    before(async () => {
+        await mongoose.connect(process.env.MONGODB_TEST_URL)
+    })
 
-//     it('retrieves existing user', () =>
-//         User.deleteMany()
-//             .then(() => User.create({ name: 'Pepe', surname: 'Roni', email: 'pepe@roni.com', password: '123qwe123' }))
-//             .then(user => logic.retrieveUser(user.id))
-//             .then(user => {
-//                 expect(user.name).to.equal('Pepe')
-//                 expect(user.surname).to.equal('Roni')
-//                 expect(user.email).to.equal('pepe@roni.com')
-//             })
-//     )
+    beforeEach(async () => {
+        await User.deleteMany()
+    })
 
-//     it('does not retrieve non-existing user', () =>
-//         User.deleteMany()
-//             .then(() => logic.retrieveUser(new ObjectId().toString()))
-//             .catch(error => {
-//                 expect(error).to.be.instanceOf(NotFoundError)
-//                 expect(error.message).to.equal('User not found')
-//             })
-//     )
+    it('retrieves existing user', async () => {
+        const newUser = await User.create({ name: 'Pepe', surname: 'Roni', email: 'pepe@roni.com', password: '123qwe123' })
+        const user = await logic.retrieveUser(newUser.id)
+        expect(user.name).to.equal('Pepe')
+        expect(user.surname).to.equal('Roni')
+        expect(user.email).to.equal('pepe@roni.com')
+    })
 
-//     after(() => mongoose.disconnect())
-// })
+    it('does not retrieve non-existing user', async () => {
+        try {
+            await logic.retrieveUser(new ObjectId().toString())
+            throw new Error('Test failed, should have thrown NotFoundError')
+        } catch (error) {
+            expect(error).to.be.instanceOf(NotFoundError)
+            expect(error.message).to.equal('User not found')
+        }
+    })
+
+    it('fails on invalid userId format', async () => {
+        try {
+            await logic.retrieveUser('invalid-user-id')
+            throw new Error('Test failed, should have thrown SystemError')
+        } catch (error) {
+            expect(error).to.be.instanceOf(SystemError)
+        }
+    })
+
+    after(async () => {
+        await mongoose.disconnect()
+    })
+})

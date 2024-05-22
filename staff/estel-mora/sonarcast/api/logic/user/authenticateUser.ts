@@ -1,7 +1,7 @@
-import validate from '../../utils/validate'
-import { errors } from '../../utils/errors'
-import logger from '../../utils/logger'
-import { User } from '../../data/index'
+import logger from '../../utils/logger.ts'
+import validate from '../../utils/validate.ts'
+import { errors } from '../../utils/errors.ts'
+import { User } from '../../data/index.ts'
 
 const { SystemError, CredentialsError, NotFoundError } = errors
 
@@ -27,11 +27,14 @@ async function authenticateUser(email: string, password: string): Promise<string
         logger.info(`User authenticated successfully: ${email}`)
         return user.id
     } catch (error) {
-        if (error instanceof NotFoundError || error instanceof CredentialsError) {
-            logger.error(`Authentication error for email ${email}`, error)
+        if (error instanceof NotFoundError) {
+            logger.error(error)
+            throw error
+        } else if (error instanceof CredentialsError) {
+            logger.error(error)
             throw error
         } else {
-            logger.error('System error during authentication', error)
+            logger.error(error)
             throw new SystemError(error.message)
         }
     }

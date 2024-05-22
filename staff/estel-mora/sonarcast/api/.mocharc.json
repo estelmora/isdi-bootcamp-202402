@@ -5,6 +5,7 @@
         "ts"
     ],
     "spec": [
-        "logic/*.spec.*"
+        "logic/tests/user/*.spec.*",
+        "logic/tests/podcast/*.spec.*"
     ]
 }

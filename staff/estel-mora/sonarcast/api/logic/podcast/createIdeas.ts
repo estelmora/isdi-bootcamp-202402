@@ -1,7 +1,11 @@
 import OpenAI from 'openai'
-import logger from '../../utils/logger'
+import logger from '../../utils/logger.ts'
 
 async function createIdeas(apiKey, transcript) {
+    if (!transcript) {
+        throw new Error('Transcript cannot be empty')
+    }
+
     try {
         logger.debug('Creating OpenAI instance')
         const openai = new OpenAI({ apiKey })
@@ -22,7 +26,7 @@ async function createIdeas(apiKey, transcript) {
         logger.info('Successfully generated ideas from OpenAI')
         return ideas
     } catch (error) {
-        logger.error('Error creating ideas', error)
+        logger.error(error)
         throw error
     }
 }

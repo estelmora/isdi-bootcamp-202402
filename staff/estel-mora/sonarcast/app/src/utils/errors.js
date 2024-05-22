@@ -17,6 +17,7 @@ const DuplicityError = buildErrorClass('DuplicityError')
 const CredentialsError = buildErrorClass('CredentialsError')
 const NotFoundError = buildErrorClass('NotFoundError')
 const UnauthorizedError = buildErrorClass('UnauthorizedError')
+const TypeError = buildErrorClass('TypeError')
 
 const errors = {
     ContentError,
@@ -25,6 +26,7 @@ const errors = {
     CredentialsError,
     NotFoundError,
     UnauthorizedError,
+    TypeError
 }
 
 export {
@@ -34,5 +36,6 @@ export {
     CredentialsError,
     NotFoundError,
     UnauthorizedError,
+    TypeError,
     errors
 }

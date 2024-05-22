@@ -1,7 +1,7 @@
-import validate from '../../utils/validate'
-import { errors } from '../../utils/errors'
-import logger from '../../utils/logger'
-import { User, Podcast } from '../../data/index'
+import validate from '../../utils/validate.ts'
+import { errors } from '../../utils/errors.ts'
+import logger from '../../utils/logger.ts'
+import { User, Podcast } from '../../data/index.ts'
 
 const { SystemError, NotFoundError } = errors
 
@@ -23,10 +23,10 @@ async function createPodcast(userId: string, title: string, transcript: string):
         logger.info('Podcast created successfully')
     } catch (error) {
         if (error instanceof NotFoundError) {
-            logger.error('User not found', error)
+            logger.error(error)
             throw error
         } else {
-            logger.error('System error while creating podcast', error)
+            logger.error(error)
             throw new SystemError(error.message)
         }
     }

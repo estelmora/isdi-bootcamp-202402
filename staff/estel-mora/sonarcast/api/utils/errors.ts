@@ -5,6 +5,7 @@ function buildErrorClass(name) {
         constructor(message) {
             super(message)
             this.name = name
+            // Object.setPrototypeOf(this, new.target.prototype)
         }
         // @ts-ignore
         static get name() {
@@ -14,12 +15,13 @@ function buildErrorClass(name) {
 }
 
 const { TokenExpiredError } = jwt
-const ContentError = buildErrorClass('ContentError')
 const SystemError = buildErrorClass('SystemError')
+const ContentError = buildErrorClass('ContentError')
 const DuplicityError = buildErrorClass('DuplicityError')
 const CredentialsError = buildErrorClass('CredentialsError')
 const NotFoundError = buildErrorClass('NotFoundError')
 const UnauthorizedError = buildErrorClass('UnauthorizedError')
+const TypeError = buildErrorClass('TypeError')
 
 const errors = {
     ContentError,
@@ -28,7 +30,8 @@ const errors = {
     CredentialsError,
     NotFoundError,
     UnauthorizedError,
-    TokenExpiredError
+    TokenExpiredError,
+    TypeError,
 }
 
 export {
@@ -39,5 +42,6 @@ export {
     NotFoundError,
     UnauthorizedError,
     TokenExpiredError,
+    TypeError,
     errors
 }

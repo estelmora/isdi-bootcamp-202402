@@ -1,6 +1,6 @@
 import fs from 'fs'
 import OpenAI from 'openai'
-import logger from '../../utils/logger'
+import logger from '../../utils/logger.ts'
 
 async function createTranscript(filePath, apiKey) {
     try {
@@ -16,7 +16,7 @@ async function createTranscript(filePath, apiKey) {
         logger.info('Successfully created transcript from audio file')
         return transcript.text
     } catch (error) {
-        logger.error('Error creating transcript', error)
+        logger.error(error)
         throw error
     }
 }

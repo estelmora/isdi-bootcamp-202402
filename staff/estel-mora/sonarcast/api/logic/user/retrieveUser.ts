@@ -1,9 +1,9 @@
-import validate from '../../utils/validate'
-import { errors } from '../../utils/errors'
-import logger from '../../utils/logger'
-import { User } from '../../data/index'
+import logger from '../../utils/logger.ts'
+import validate from '../../utils/validate.ts'
+import { errors } from '../../utils/errors.ts'
+import { User } from '../../data/index.ts'
 
-const { NotFoundError, SystemError } = errors
+const { SystemError, NotFoundError } = errors
 
 async function retrieveUser(userId: string): Promise<{ name: string, surname: string, email: string }> {
     try {
@@ -21,10 +21,10 @@ async function retrieveUser(userId: string): Promise<{ name: string, surname: st
         return { name: user.name, surname: user.surname, email: user.email }
     } catch (error) {
         if (error instanceof NotFoundError) {
-            logger.error(`User not found: ${userId}`, error)
+            logger.error(error)
             throw error
         } else {
-            logger.error('System error while retrieving user', error)
+            logger.error(error)
             throw new SystemError(error.message)
         }
     }

@@ -1,8 +1,8 @@
 import { ObjectId } from 'mongoose'
-import validate from '../../utils/validate'
-import { errors } from '../../utils/errors'
-import logger from '../../utils/logger'
-import { Podcast } from '../../data/index'
+import validate from '../../utils/validate.ts'
+import { errors } from '../../utils/errors.ts'
+import logger from '../../utils/logger.ts'
+import { Podcast } from '../../data/index.ts'
 
 const { SystemError, NotFoundError } = errors
 
@@ -40,10 +40,10 @@ async function retrievePodcast(userId: string, podcastId: string): Promise<{ id:
         return podcastDetails
     } catch (error) {
         if (error instanceof NotFoundError) {
-            logger.error('NotFoundError in retrievePodcast', error)
+            logger.error(error)
             throw error
         } else {
-            logger.error('SystemError in retrievePodcast', error)
+            logger.error(error)
             throw new SystemError(error.message)
         }
     }

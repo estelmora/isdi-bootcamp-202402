@@ -1,9 +1,9 @@
-import validate from '../../utils/validate'
-import { errors } from '../../utils/errors'
-import logger from '../../utils/logger'
-import { UserType, User } from '../../data/index'
+import logger from '../../utils/logger.ts'
+import validate from '../../utils/validate.ts'
+import { errors } from '../../utils/errors.ts'
+import { UserType, User } from '../../data/index.ts'
 
-const { DuplicityError, SystemError } = errors
+const { SystemError, ContentError, DuplicityError, TypeError } = errors
 
 async function registerUser(name: string, surname: string, email: string, password: string): Promise<void> {
     try {
@@ -32,7 +32,13 @@ async function registerUser(name: string, surname: string, email: string, passwo
         logger.info(`User registered successfully: ${email}`)
     } catch (error) {
         if (error instanceof DuplicityError) {
-            logger.error(`Duplicity error while registering user: ${email}`, error)
+            logger.error(error)
+            throw error
+        } else if (error instanceof TypeError) {
+            logger.error(error)
+            throw error
+        } else if (error instanceof ContentError) {
+            logger.error(error)
             throw error
         } else {
             logger.error('System error while registering user', error)

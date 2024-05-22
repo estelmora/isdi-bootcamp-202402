@@ -1,6 +1,6 @@
-import validate from '../../utils/validate'
-import { errors } from '../../utils/errors'
-import logger from '../../utils/logger'
+import validate from '../../utils/validate.ts'
+import { errors } from '../../utils/errors.ts'
+import logger from '../../utils/logger.ts'
 import { exec } from 'child_process'
 import util from 'util'
 
@@ -30,7 +30,7 @@ async function splitAudioFile(sourcePath: string, outputPath: string, segmentDur
         logger.info('Audio file split successfully')
         return stderr
     } catch (error) {
-        logger.error('Error during audio splitting:', error)
+        logger.error(error)
         throw new errors.SystemError('Failed to split audio file')
     }
 }

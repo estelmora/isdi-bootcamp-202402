@@ -2,54 +2,53 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 import mongoose from 'mongoose'
-import { expect, use } from 'chai'
+import { use, expect } from 'chai'
 import chaiAsPromised from 'chai-as-promised'
 import { errors } from '../../../utils/errors.ts'
-
-use(chaiAsPromised)
 
 import { User, Podcast } from '../../../data/index.ts'
 import logic from '../../index.ts'
 
+const { Types: { ObjectId } } = mongoose
 const { NotFoundError } = errors
 
+use(chaiAsPromised)
+
 describe('removePodcast', () => {
-    before(() => mongoose.connect(process.env.MONGODB_TEST_URL))
+    before(async () => {
+        await mongoose.connect(process.env.MONGODB_TEST_URL)
+    })
 
-    let user, podcastId
+    beforeEach(async () => {
+        await User.deleteMany()
+        await Podcast.deleteMany()
+    })
 
-    beforeEach(() =>
-        User.deleteMany()
-            .then(() => Podcast.deleteMany())
-            .then(() =>
-                User.create({ name: 'Pepe', surname: 'Roni', email: 'pepe@roni.com', password: '123qwe123' })
-                    .then(createdUser => {
-                        user = createdUser
-                        return Podcast.create({ title: 'Title', transcript: 'Transcript', author: user._id, date: new Date() })
-                            .then(podcast => {
-                                podcastId = podcast._id.toString()
-                            })
-                    })
-            )
-    )
+    it('removes an existing podcast with valid user and podcast IDs', async () => {
+        const user = await User.create({ name: 'Pepe', surname: 'Roni', email: 'pepe@roni.com', password: '123qwe123' })
+        const podcast = await Podcast.create({ author: user._id, title: 'Example title', transcript: 'Here is a longer transcript example.', date: new Date() })
 
-    it('removes an existing podcast by the author', () =>
-        logic.removePodcast(user.id, podcastId)
-            .then(() =>
-                Podcast.findById(podcastId)
-                    .then(result => {
-                        expect(result).to.be.null
-                    })
-            )
-    )
+        await logic.removePodcast(user.id, podcast.id)
+        const deletedPodcast = await Podcast.findById(podcast.id)
+        
+        expect(deletedPodcast).to.be.null
+    })
 
-    it('fails to remove a podcast that does not exist', () =>
-        expect(logic.removePodcast(user.id, new mongoose.Types.ObjectId().toString())).to.be.rejectedWith(NotFoundError)
-    )
+    it('fails to remove a podcast when the user does not exist', async () => {
+        const fakeUserId = new ObjectId().toString()
+        const podcastId = new ObjectId().toString()
+        await expect(logic.removePodcast(fakeUserId, podcastId))
+            .to.be.rejectedWith(NotFoundError, 'User not found')
+    })
 
-    it('fails to remove a podcast with a non-existent user', () =>
-        expect(logic.removePodcast(new mongoose.Types.ObjectId().toString(), podcastId)).to.be.rejectedWith(NotFoundError)
-    )
+    it('fails to remove a podcast when the podcast does not exist', async () => {
+        const user = await User.create({ name: 'Pepe', surname: 'Roni', email: 'pepe@roni.com', password: '123qwe123' })
+        const fakePodcastId = new ObjectId().toString()
+        await expect(logic.removePodcast(user.id, fakePodcastId))
+            .to.be.rejectedWith(NotFoundError, 'Podcast not found or user not authorized')
+    })
 
-    after(() => mongoose.disconnect())
+    after(async () => {
+        await mongoose.disconnect()
+    })
 })
