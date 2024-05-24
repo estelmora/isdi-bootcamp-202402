@@ -1,6 +1,5 @@
 import { ObjectId } from 'mongoose'
-import validate from '../../utils/validate.ts'
-import { errors } from '../../utils/errors.ts'
+import { validate, errors } from 'com'
 import logger from '../../utils/logger.ts'
 import { Podcast } from '../../data/index.ts'
 

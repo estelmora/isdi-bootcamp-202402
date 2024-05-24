@@ -4,7 +4,7 @@ dotenv.config()
 import mongoose from 'mongoose'
 import { use, expect } from 'chai'
 import chaiAsPromised from 'chai-as-promised'
-import { errors } from '../../../utils/errors.ts'
+import { errors } from 'com'
 
 import { User, Podcast } from '../../../data/index.ts'
 import logic from '../../index.ts'
@@ -27,22 +27,22 @@ describe('retrievePodcasts', () => {
     it('retrieves all podcasts for a valid user ID', async () => {
         const user = await User.create({ name: 'Pepe', surname: 'Roni', email: 'pepe@roni.com', password: '123qwe123' })
         const podcast1 = await Podcast.create({
-            author: user._id, 
-            title: 'Podcast One', 
-            transcript: 'Transcript for the first podcast.', 
-            ideas: 'Ideas for the first podcast.', 
-            date: new Date() 
+            author: user._id,
+            title: 'Podcast One',
+            transcript: 'Transcript for the first podcast.',
+            ideas: 'Ideas for the first podcast.',
+            date: new Date()
         })
         const podcast2 = await Podcast.create({
-            author: user._id, 
-            title: 'Podcast Two', 
-            transcript: 'Transcript for the second podcast.', 
-            ideas: 'Ideas for the second podcast.', 
-            date: new Date() 
+            author: user._id,
+            title: 'Podcast Two',
+            transcript: 'Transcript for the second podcast.',
+            ideas: 'Ideas for the second podcast.',
+            date: new Date()
         })
 
         const retrievedPodcasts = await logic.retrievePodcasts(user.id)
-        
+
         expect(retrievedPodcasts).to.be.an('array').that.has.lengthOf(2);
         expect(retrievedPodcasts[0].title).to.equal('Podcast Two'); // Because the results are reversed
         expect(retrievedPodcasts[1].title).to.equal('Podcast One');
@@ -52,7 +52,7 @@ describe('retrievePodcasts', () => {
         const user = await User.create({ name: 'Solo', surname: 'Rider', email: 'solo@rider.com', password: 'securepass' })
 
         const retrievedPodcasts = await logic.retrievePodcasts(user.id)
-        
+
         expect(retrievedPodcasts).to.be.an('array').that.is.empty;
     })
 

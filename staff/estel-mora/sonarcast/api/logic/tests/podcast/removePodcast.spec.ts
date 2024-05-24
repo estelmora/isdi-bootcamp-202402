@@ -4,7 +4,7 @@ dotenv.config()
 import mongoose from 'mongoose'
 import { use, expect } from 'chai'
 import chaiAsPromised from 'chai-as-promised'
-import { errors } from '../../../utils/errors.ts'
+import { errors } from 'com'
 
 import { User, Podcast } from '../../../data/index.ts'
 import logic from '../../index.ts'
@@ -30,7 +30,7 @@ describe('removePodcast', () => {
 
         await logic.removePodcast(user.id, podcast.id)
         const deletedPodcast = await Podcast.findById(podcast.id)
-        
+
         expect(deletedPodcast).to.be.null
     })
 

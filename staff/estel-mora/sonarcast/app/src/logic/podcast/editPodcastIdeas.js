@@ -1,4 +1,5 @@
-import { validate, handleResponseError, extractJwtPayload, logger } from '../../utils'
+import { handleResponseError, logger } from '../../utils'
+import { validate, extractJwtPayload } from 'com'
 
 async function editPodcastIdeas(podcastId, transcript) {
     logger.debug('editPodcastIdeas → Editing podcast ideas...')

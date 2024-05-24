@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import { errors } from '../utils/errors.ts'
+import { errors } from 'com'
 import logger from '../utils/logger.ts'
 
 function errorHandler(err: Error, req: Request, res: Response, next: NextFunction) {

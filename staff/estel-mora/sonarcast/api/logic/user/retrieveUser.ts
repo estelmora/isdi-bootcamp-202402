@@ -1,6 +1,5 @@
 import logger from '../../utils/logger.ts'
-import validate from '../../utils/validate.ts'
-import { errors } from '../../utils/errors.ts'
+import { validate, errors } from 'com'
 import { User } from '../../data/index.ts'
 
 const { SystemError, NotFoundError } = errors

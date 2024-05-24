@@ -1,4 +1,4 @@
-import { errors } from "./errors"
+import { errors } from 'com'
 
 async function handleResponseError(response) {
     const body = await response.json()

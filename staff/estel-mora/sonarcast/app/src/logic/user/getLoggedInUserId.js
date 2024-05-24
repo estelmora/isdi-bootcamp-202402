@@ -1,4 +1,5 @@
-import { validate, extractJwtPayload, logger } from '../../utils'
+import { logger } from '../../utils'
+import { validate, extractJwtPayload } from 'com'
 
 function getLoggedInUserId() {
     logger.debug('getLoggedInUserId → Retrieving User ID...')

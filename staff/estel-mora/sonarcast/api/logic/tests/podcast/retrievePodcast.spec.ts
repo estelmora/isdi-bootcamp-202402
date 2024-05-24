@@ -4,7 +4,7 @@ dotenv.config()
 import mongoose from 'mongoose'
 import { use, expect } from 'chai'
 import chaiAsPromised from 'chai-as-promised'
-import { errors } from '../../../utils/errors.ts'
+import { errors } from 'com'
 
 import { User, Podcast } from '../../../data/index.ts'
 import logic from '../../index.ts'
@@ -26,16 +26,16 @@ describe('retrievePodcast', () => {
 
     it('retrieves an existing podcast with valid podcast ID', async () => {
         const user = await User.create({ name: 'Pepe', surname: 'Roni', email: 'pepe@roni.com', password: '123qwe123' })
-        const podcast = await Podcast.create({ 
-            author: user._id, 
-            title: 'Example title', 
-            transcript: 'Here is a longer transcript example.', 
-            ideas: 'Example ideas', 
-            date: new Date() 
+        const podcast = await Podcast.create({
+            author: user._id,
+            title: 'Example title',
+            transcript: 'Here is a longer transcript example.',
+            ideas: 'Example ideas',
+            date: new Date()
         })
 
         const retrievedPodcast = await logic.retrievePodcast(user.id, podcast.id)
-        
+
         expect(retrievedPodcast.id).to.equal(podcast.id.toString())
         expect(retrievedPodcast.author.id).to.equal(user.id.toString())
         expect(retrievedPodcast.title).to.equal('Example title')

@@ -1,5 +1,4 @@
-import validate from '../../utils/validate.ts'
-import { errors } from '../../utils/errors.ts'
+import { validate, errors } from 'com'
 import logger from '../../utils/logger.ts'
 import { exec } from 'child_process'
 import util from 'util'

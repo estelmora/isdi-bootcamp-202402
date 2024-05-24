@@ -3,7 +3,7 @@ dotenv.config()
 
 import mongoose from 'mongoose'
 import { expect } from 'chai'
-import { errors } from '../../../utils/errors.ts'
+import { errors } from 'com'
 
 import { User } from '../../../data/index.ts'
 import logic from '../../index.ts'

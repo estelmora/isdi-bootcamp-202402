@@ -1,4 +1,5 @@
-import { validate, handleResponseError, logger } from '../../utils'
+import { handleResponseError, logger } from '../../utils'
+import { validate } from 'com'
 
 async function registerUser(name, surname, email, password) {
     logger.debug('registerUser → Signing up...')

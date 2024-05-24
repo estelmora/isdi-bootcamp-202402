@@ -1,4 +1,5 @@
-import { validate, handleResponseError, logger, extractJwtPayload } from '../../utils'
+import { handleResponseError, logger } from '../../utils'
+import { validate, extractJwtPayload } from 'com'
 
 async function retrieveUser() {
     logger.debug('retrieveUser → validate token')

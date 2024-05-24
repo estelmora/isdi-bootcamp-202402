@@ -4,7 +4,7 @@ dotenv.config()
 import mongoose from 'mongoose'
 import { use, expect } from 'chai'
 import chaiAsPromised from 'chai-as-promised'
-import { errors } from '../../../utils/errors.ts'
+import { errors } from 'com'
 
 import { User, Podcast } from '../../../data/index.ts'
 import logic from '../../index.ts'
@@ -55,7 +55,7 @@ describe('editPodcast', () => {
     it('fails to update podcast ideas if not provided in updates', async () => {
         const user = await User.create({ name: 'Pepe', surname: 'Roni', email: 'pepe@roni.com', password: '123qwe123' })
         const podcast = await Podcast.create({ author: user._id, title: 'Example title', transcript: 'Example transcript', ideas: 'Example ideas', date: new Date() })
-        
+
         const updates = { title: 'Updated Title' }
         const updatedPodcast = await logic.editPodcast(user.id, podcast.id, updates)
 

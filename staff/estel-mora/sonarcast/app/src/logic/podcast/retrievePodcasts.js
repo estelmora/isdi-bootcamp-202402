@@ -1,4 +1,5 @@
-import { validate, handleResponseError, logger } from '../../utils'
+import { handleResponseError, logger } from '../../utils'
+import { validate } from 'com'
 
 async function retrievePodcasts() {
     logger.debug('retrievePodcasts → Retrieving podcasts...')

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
-import { Context, errors, logger } from './utils'
+import { Context, logger } from './utils'
+import { errors } from 'com'
 import logic from './logic'
 
 import Register from './pages/Register'
