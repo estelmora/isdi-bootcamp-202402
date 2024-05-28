@@ -15,7 +15,7 @@ async function createIdeas(apiKey, transcript) {
             messages: [
                 {
                     role: "system",
-                    content: "You need to provide ideas for a podcast host to discuss in their next podcast, based on the transcript of the following podcast. Don't repeat specific topics already covered in this topic. Instead, propose new topics that are related to the subject matter discussed in the podcast. Reply in the same language as the podcast. Reply only with the list of ideas and nothing else."
+                    content: "You need to provide ideas for a podcast host to discuss in their next podcast, based on the transcript of the following podcast. Don't repeat specific topics already covered in this podcast. Instead, propose new topics that are related to the subject matter discussed in the podcast. Reply in the same language as the podcast. Reply only with the list of ideas and nothing else."
                 },
                 { role: "user", content: transcript }
             ],

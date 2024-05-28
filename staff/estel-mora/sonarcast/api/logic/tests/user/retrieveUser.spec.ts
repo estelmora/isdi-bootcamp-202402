@@ -28,9 +28,10 @@ describe('retrieveUser', () => {
         expect(user.email).to.equal('pepe@roni.com')
     })
 
-    it('does not retrieve non-existing user', async () => {
+    it('does not retrieve a non-existing user', async () => {
         try {
-            await logic.retrieveUser(new ObjectId().toString())
+            const fakeUserId = new ObjectId().toString()
+            await logic.retrieveUser(fakeUserId)
             throw new Error('Test failed, should have thrown NotFoundError')
         } catch (error) {
             expect(error).to.be.instanceOf(NotFoundError)

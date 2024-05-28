@@ -15,7 +15,7 @@ const authorize = (req: Request, res: Response, next: NextFunction) => {
         const { authorization } = req.headers
         const token = authorization?.slice(7)
         const decoded = jwt.verify(token, JWT_SECRET)
-        req.user = (decoded as any).sub
+        req.user = (decoded as any).sub // afegeix ".user" a la request
         logger.info('Authorization successful.')
         next()
     } catch (error) {

@@ -8,10 +8,10 @@ const { OPENAI_API_KEY } = process.env
 const editPodcast = async (req, res, next) => {
     try {
         const userId = req.user
-        const { podcastId } = req.params
+        const { podcastId } = req.params // la id del podcast està en la url ex: podcasts/12354
         const { title, needIdeas, transcript } = req.body
         let ideas = null
-        if (needIdeas) {
+        if (needIdeas) { // es true, executa: 
             ideas = await logic.createIdeas(OPENAI_API_KEY, transcript)
         }
 

@@ -1,31 +1,32 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
-const { OPENAI_API_KEY } = process.env
-
 import path from 'path'
 import fs from 'fs'
 
 import logic from '../../logic'
 
+const { OPENAI_API_KEY } = process.env
+
 const uploadFile = async (req, res, next) => {
     try {
         const uploadedFile = req.files?.file
-        const fileExtension = uploadedFile.name.match(/\.\w+$/)?.[0]
-        const fileName = `podcast-${Date.now()}${fileExtension}`
-        const filePath = `./data/files/${fileName}`
+        const fileExtension = uploadedFile.name.match(/\.\w+$/)?.[0] // guarda el després del . (.mp3/.mp4)
+        const timestamp = Date.now()
+        const fileName = `${timestamp}${fileExtension}`
+        const dir = `./data/files/` // carpeta on es vol guardar
+        const sourcePath = `${dir}${fileName}` // Path (carpeta + arxiu)
 
-        uploadedFile.mv(filePath, async (err) => {
-            const timestamp = Date.now()
-            const outputPath = `./data/files/${timestamp}-chunk-%03d${fileExtension}`
-            await logic.splitAudioFile(filePath, outputPath, 300)
+        uploadedFile.mv(sourcePath, async (err) => {
+            const outputPath = `${dir}${timestamp}-chunk-%03d${fileExtension}`
+            await logic.splitAudioFile(sourcePath, outputPath, 300)
 
-            const dir = path.dirname(outputPath)
-            const allFiles = fs.readdirSync(dir)
-            const files = allFiles.filter(file => file.startsWith(`${timestamp}-chunk`))
+            const allFiles = fs.readdirSync(dir) // agafem TOTS els arxius dins de /data/files
+            const files = allFiles.filter(file => file.startsWith(`${timestamp}-chunk`)) //filtra arxius que comencin amb el mateix timestamp =podcast actual
 
             const transcripts = await Promise.all(
-                files.map(file => logic.createTranscript(path.join(dir, file), process.env.OPENAI_API_KEY))
+                files.map(file => logic.createTranscript(path.join(dir, file), OPENAI_API_KEY))
+                // map crea un array de transcripts
             )
 
             const combinedTranscript = transcripts.join(' ')

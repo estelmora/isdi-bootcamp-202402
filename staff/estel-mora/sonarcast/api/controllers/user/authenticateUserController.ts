@@ -11,7 +11,7 @@ const authenticateUser = async (req, res, next) => {
     try {
         const { email, password } = req.body
         const userId = await logic.authenticateUser(email, password)
-        const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: JWT_EXP })
+        const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: JWT_EXP }) // generem el token amb userId
         res.json(token)
     } catch (error) {
         next(error)

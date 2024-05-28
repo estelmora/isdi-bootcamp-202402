@@ -44,7 +44,7 @@ describe('retrievePodcasts', () => {
         const retrievedPodcasts = await logic.retrievePodcasts(user.id)
 
         expect(retrievedPodcasts).to.be.an('array').that.has.lengthOf(2);
-        expect(retrievedPodcasts[0].title).to.equal('Podcast Two'); // Because the results are reversed
+        expect(retrievedPodcasts[0].title).to.equal('Podcast Two'); // Els resultats estàn al revès, primer el + recent
         expect(retrievedPodcasts[1].title).to.equal('Podcast One');
     })
 

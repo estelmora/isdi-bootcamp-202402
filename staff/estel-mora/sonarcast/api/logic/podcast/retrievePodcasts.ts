@@ -18,9 +18,9 @@ async function retrievePodcasts(userId: string): Promise<{ id: string, author: {
         }
 
         logger.debug(`Finding podcasts for user id: ${userId}`)
-        const podcasts = await Podcast.find({ author: user._id }).populate<{ author: { _id: ObjectId, name: string, surname: string, email: string } }>('author', 'name surname email').lean()
+        const podcasts = await Podcast.find({ author: user._id }).populate<{ author: { _id: ObjectId, name: string, surname: string, email: string } }>('author', 'name surname email').lean() //converteix el resultat en un objecte de JS
 
-        const podcastList = podcasts.map(({ _id, author, title, transcript, ideas, date }) => ({
+        const podcastList = podcasts.map(({ _id, author, title, transcript, ideas, date }) => ({ // converteix el podcast al format que necessitem 
             id: _id.toString(),
             author: {
                 id: author._id.toString(),

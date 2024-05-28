@@ -8,7 +8,7 @@ import { errors } from 'com'
 import { User } from '../../../data/index.ts'
 import logic from '../../index.ts'
 
-const { ContentError, DuplicityError, TypeError } = errors
+const { ContentError, DuplicityError, SystemError } = errors
 
 describe('registerUser', () => {
     before(async () => {
@@ -46,7 +46,7 @@ describe('registerUser', () => {
             await logic.registerUser(123, 'Roni', 'pepe@roni.com', '123qwe123')
             throw new Error('Test failed, should have thrown TypeError')
         } catch (error) {
-            expect(error).to.be.instanceOf(TypeError)
+            expect(error).to.be.instanceOf(SystemError)
             expect(error.message).to.equal('name 123 is not a string')
         }
     })

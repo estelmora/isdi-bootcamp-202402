@@ -5,7 +5,7 @@ import util from 'util'
 
 const execAsync = util.promisify(exec)
 
-async function splitAudioFile(sourcePath: string, outputPath: string, segmentDuration: number = 120): Promise<string> {
+async function splitAudioFile(sourcePath: string, outputPath: string, segmentDuration: number): Promise<string> {
     try {
         logger.debug(`Validating sourcePath: ${sourcePath}`)
         validate.text(sourcePath, 'sourcePath', true)
@@ -18,14 +18,15 @@ async function splitAudioFile(sourcePath: string, outputPath: string, segmentDur
             throw new errors.ContentError('Invalid segment duration')
         }
 
-        const command = `ffmpeg -i "${sourcePath}" -f segment -segment_time ${segmentDuration} -c copy "${outputPath}"`
+        const command = `ffmpeg -i "${sourcePath}" -f segment -segment_time ${segmentDuration} -c copy "${outputPath}"` // guardem el comando
 
         logger.debug(`Executing command: ${command}`)
-        const { stdout, stderr } = await execAsync(command)
+        const { stdout, stderr } = await execAsync(command) // executem el comando
 
         if (stderr) {
             logger.info(`FFmpeg stderr: ${stderr}`)
         }
+
         logger.info('Audio file split successfully')
         return stderr
     } catch (error) {

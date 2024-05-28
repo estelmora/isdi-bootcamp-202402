@@ -7,8 +7,8 @@ const { SystemError, ContentError, DuplicityError, TypeError } = errors
 async function registerUser(name: string, surname: string, email: string, password: string): Promise<void> {
     try {
         logger.debug('Validating user details')
-        validate.text(name, 'name', true)
-        validate.text(surname, 'surname', true)
+        validate.text(name, 'name', false)
+        validate.text(surname, 'surname', false)
         validate.email(email)
         validate.password(password)
 

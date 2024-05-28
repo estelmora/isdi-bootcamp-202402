@@ -15,7 +15,9 @@ function Feedback({ message, level, onAcceptClick }) {
             <h3 className={`text-lg font-semibold ${level === 'error' ? 'text-red-500' : 'text-yellow-500'}`}>
                 {message}
             </h3>
-            <AcceptButton onClick={onAcceptClick}>Accept</AcceptButton>
+            <AcceptButton onClick={onAcceptClick}>
+                Accept
+            </AcceptButton>
         </div>
     )
 }

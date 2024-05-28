@@ -9,7 +9,7 @@ async function retrievePodcasts() {
 
         logger.info('Sending request to retrieve podcasts...')
         const response = await fetch(`${import.meta.env.VITE_API_URL}/podcasts`, {
-            headers: {
+            headers: { //method: GET
                 'Authorization': `Bearer ${sessionStorage.token}`
             }
         })

@@ -16,7 +16,7 @@ function ViewPodcast({ podcast, onIdeasGenerated }) {
         setView('loading')
 
         try {
-            const podcastId = podcast._id || podcast.id
+            const podcastId = podcast._id || podcast.id // es igual a id
             if (!podcastId) {
                 logger.error('Podcast ID is missing or invalid: ', podcast)
                 showFeedback("Couldn't find podcast.", 'error')

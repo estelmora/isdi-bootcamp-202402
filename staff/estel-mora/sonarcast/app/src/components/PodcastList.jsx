@@ -8,7 +8,7 @@ function PodcastList({ stamp, onEditPodcastClick, onViewPodcastClick }) {
     const [podcasts, setPodcasts] = useState([])
     const { showFeedback } = useContext()
 
-    useEffect(() => {
+    useEffect(() => { // cada vegada que canvia l'estat de stamp o s'executa showfeedack; s'executa el codi dins de useffect
         const loadPodcasts = async () => {
             logger.debug('PodcastList → loadPodcasts')
 
@@ -39,7 +39,8 @@ function PodcastList({ stamp, onEditPodcastClick, onViewPodcastClick }) {
 
     return (
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4 mx-auto max-w-7xl">
-            {podcasts.map(podcast => (
+            {podcasts.map(podcast => ( // array podcasts = podcasts trets de bd (mirar useEffect)
+                // per cada podcast dins l'array creem un compo de Podcast
                 <Podcast
                     key={podcast.id}
                     item={podcast}

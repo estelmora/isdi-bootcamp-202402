@@ -17,7 +17,7 @@ function CreatePodcast({ onPodcastCreated, onCancelClick }) {
         setView('loading')
 
         try {
-            await logic.createPodcast(title.value, file.files[0], showFeedback)
+            await logic.createPodcast(title.value, file.files[0])
             event.target.reset()
             onPodcastCreated()
         } catch (error) {

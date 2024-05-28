@@ -25,11 +25,6 @@ This is what the software can do on version 0
 
 - Idea Generator & Content Optimitzation  The service offers a creative tool that suggests unlimited trending topics and key words based on the content of the podcast and what's currently trending, to help podcast creators generate content that is relevant and has the potential to engage more listeners.
 
-### User Stories 📝
-- podcast list by title
-- xxx nom de les funcions seguramnet
-
-
 ### UI Design 📝
 [Figma](https://www.figma.com/design/Bn8AS2vyTPx90Ol2IFIYLk/Isdi-Project?node-id=0%3A1&t=cBWHgKpqZojv6tOc-1)
 

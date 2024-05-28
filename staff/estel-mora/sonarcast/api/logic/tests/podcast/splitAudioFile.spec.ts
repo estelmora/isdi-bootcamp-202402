@@ -10,17 +10,17 @@ import logic from '../../../logic/index.ts'
 
 const execAsync = util.promisify(exec)
 
-describe('splitAudioFile', function() {
+describe('splitAudioFile', function () {
     const sourcePath = './logic/tests/podcast/files/sample-long.mp3'
     const outputPath = './logic/tests/podcast/files/output/%03d-sample-output.mp3'
 
-    before(async function() {
-        // ensure outputdirectory exists
+    before(async function () {
+        // assegurar que el outputdirectory existeix
         fs.mkdirSync('./logic/tests/podcast/files/output', { recursive: true })
     })
 
-    after(async function() {
-        // remove created files after test
+    after(async function () {
+        // eliminar arxius despres del test
         fs.readdirSync('./logic/tests/podcast/files/output').forEach(file => {
             fs.unlinkSync(`./logic/tests/podcast/files/output/${file}`)
         })
@@ -29,7 +29,7 @@ describe('splitAudioFile', function() {
     it('successfully splits an audio file', async () => {
         const segmentDuration = 120
         await logic.splitAudioFile(sourcePath, outputPath, segmentDuration)
-        
+
         const files = fs.readdirSync('./logic/tests/podcast/files/output')
         expect(files.length).to.be.greaterThan(0)
     })
