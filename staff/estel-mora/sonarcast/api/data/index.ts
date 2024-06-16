@@ -11,7 +11,7 @@ type UserType = {
     password: string
 }
 
-const user = new Schema({
+const userSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -39,7 +39,7 @@ type PodcastType = {
     date: Date
 }
 
-const podcast = new Schema({
+const podcastSchema = new Schema({
     author: {
         type: ObjectId,
         ref: 'User',
@@ -62,8 +62,8 @@ const podcast = new Schema({
     }
 })
 
-const User = model<UserType>('User', user)
-const Podcast = model<PodcastType>('Podcast', podcast)
+const User = model<UserType>('User', userSchema)
+const Podcast = model<PodcastType>('Podcast', podcastSchema)
 
 export {
     UserType,
