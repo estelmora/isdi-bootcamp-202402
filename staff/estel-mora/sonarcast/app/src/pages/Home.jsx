@@ -86,6 +86,7 @@ function Home({ onUserLoggedOut }) {
                 {view === null && (
                     <PodcastList
                         stamp={stamp}
+                        updateStamp={updateStamp}
                         onViewPodcastClick={podcast => handleViewChange('view-podcast', podcast)}
                         onEditPodcastClick={podcast => handleViewChange('edit-podcast-title', podcast)}
                     />

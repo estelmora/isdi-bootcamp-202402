@@ -4,7 +4,7 @@ import logic from '../logic'
 
 import Podcast from './Podcast'
 
-function PodcastList({ stamp, onEditPodcastClick, onViewPodcastClick }) {
+function PodcastList({ stamp, updateStamp, onEditPodcastClick, onViewPodcastClick }) {
     const [podcasts, setPodcasts] = useState([])
     const { showFeedback } = useContext()
 
@@ -28,6 +28,7 @@ function PodcastList({ stamp, onEditPodcastClick, onViewPodcastClick }) {
 
         try {
             setPodcasts(prevPodcasts => prevPodcasts.filter(p => p.id !== podcastId))
+            updateStamp()
             logger.info('Successfully filtered out deleted podcast.')
         } catch (error) {
             logger.error('Error filtering out deleted podcast:', error)
