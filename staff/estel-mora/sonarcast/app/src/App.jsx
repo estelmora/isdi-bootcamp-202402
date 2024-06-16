@@ -87,7 +87,7 @@ const App = () => {
 
     return (
         <Context.Provider value={{ showFeedback: handleFeedback, showConfirm: handleConfirm }}>
-            {feedback && (
+            {feedback && ( // quan l'estat no sigui null = truthy
                 <Feedback
                     message={feedback.message}
                     level={feedback.level}

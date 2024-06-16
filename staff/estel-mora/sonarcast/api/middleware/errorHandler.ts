@@ -8,6 +8,9 @@ function errorHandler(err: Error, req: Request, res: Response, next: NextFunctio
     if (err instanceof errors.ContentError) {
         return res.status(400).json({ error: 'ContentError', message: err.message })
     }
+    if (err instanceof errors.TypeError) {
+        return res.status(400).json({ error: 'TypeError', message: err.message })
+    }
     if (err instanceof errors.CredentialsError) {
         return res.status(401).json({ error: 'CredentialsError', message: err.message })
     }

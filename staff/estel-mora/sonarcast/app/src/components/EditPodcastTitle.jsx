@@ -5,13 +5,13 @@ import logic from '../logic'
 import CancelButton from './library/CancelButton'
 import SubmitButton from './library/SubmitButton'
 
-function EditPodcast({ podcast, onPodcastEdited, onCancelClick }) {
-    logger.debug('EditPodcast → render')
+function EditPodcastTitle({ podcast, onPodcastTitleEdited, onCancelClick }) {
+    logger.debug('EditPodcastTitle → render')
 
     const { showFeedback } = useContext()
 
     const handleSubmit = async event => {
-        logger.debug('EditPodcast → handleSubmit')
+        logger.debug('EditPodcastTitle → handleSubmit')
         event.preventDefault()
 
         const { title } = event.target.elements
@@ -19,7 +19,7 @@ function EditPodcast({ podcast, onPodcastEdited, onCancelClick }) {
         try {
             await logic.editPodcastTitle(podcast.id, title.value)
             event.target.reset()
-            onPodcastEdited()
+            onPodcastTitleEdited()
         } catch (error) {
             showFeedback(error, 'error')
         }
@@ -42,4 +42,4 @@ function EditPodcast({ podcast, onPodcastEdited, onCancelClick }) {
     )
 }
 
-export default EditPodcast
+export default EditPodcastTitle

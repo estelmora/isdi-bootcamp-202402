@@ -7,7 +7,8 @@ import createIdeas from './podcast/createIdeas.ts'
 import createPodcast from './podcast/createPodcast.ts'
 import retrievePodcasts from './podcast/retrievePodcasts.ts'
 import retrievePodcast from './podcast/retrievePodcast.ts'
-import editPodcast from './podcast/editPodcast.ts'
+import editPodcastTitle from './podcast/editPodcastTitle.ts'
+import editPodcastIdeas from './podcast/editPodcastIdeas.ts'
 import removePodcast from './podcast/removePodcast.ts'
 import splitAudioFile from './podcast/splitAudiofile.ts'
 
@@ -22,9 +23,9 @@ const logic = {
     createPodcast,
     retrievePodcasts,
     retrievePodcast,
-    editPodcast,
+    editPodcastTitle,
+    editPodcastIdeas,
     removePodcast,
-
     splitAudioFile
 }
 

@@ -4,7 +4,7 @@ import { User, Podcast } from '../../data/index.ts'
 
 const { SystemError, NotFoundError } = errors
 
-async function editPodcast(userId: string, podcastId: string, updates: { title?: string, ideas?: Promise<string> }) {
+async function editPodcastTitle(userId: string, podcastId: string, title: string) {
     logger.debug(`Validating userId: ${userId}`)
     validate.text(userId, 'userId', true)
 
@@ -26,16 +26,9 @@ async function editPodcast(userId: string, podcastId: string, updates: { title?:
             throw new NotFoundError('Podcast not found')
         }
 
-        if (updates.title) {
-            podcast.title = updates.title
-        }
-        if (updates.ideas) {
-            podcast.ideas = await updates.ideas
-        }
-
-        const updatedPodcast = podcast.save()
+        podcast.title = title
+        await podcast.save()
         logger.info('Podcast updated successfully')
-        return updatedPodcast
     } catch (error) {
         if (error instanceof NotFoundError) {
             logger.error(error)
@@ -47,4 +40,6 @@ async function editPodcast(userId: string, podcastId: string, updates: { title?:
     }
 }
 
-export default editPodcast
+
+
+export default editPodcastTitle

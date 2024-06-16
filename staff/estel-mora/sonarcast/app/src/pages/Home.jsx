@@ -4,7 +4,7 @@ import logic from '../logic'
 
 import PodcastList from '../components/PodcastList'
 import CreatePodcast from '../components/CreatePodcast'
-import EditPodcast from '../components/EditPodcast'
+import EditPodcastTitle from '../components/EditPodcastTitle'
 import ViewPodcast from '../components/ViewPodcast'
 
 function Home({ onUserLoggedOut }) {
@@ -15,7 +15,7 @@ function Home({ onUserLoggedOut }) {
     const [stamp, setStamp] = useState(null)
     const [podcast, setPodcast] = useState(null)
 
-    useEffect(() => {
+    useEffect(() => { // cada vegada que es renderitzi el home s'executa aquest codi
         const fetchUser = async () => {
             logger.debug('Home → fetchUser')
 
@@ -87,7 +87,7 @@ function Home({ onUserLoggedOut }) {
                     <PodcastList
                         stamp={stamp}
                         onViewPodcastClick={podcast => handleViewChange('view-podcast', podcast)}
-                        onEditPodcastClick={podcast => handleViewChange('edit-podcast', podcast)}
+                        onEditPodcastClick={podcast => handleViewChange('edit-podcast-title', podcast)}
                     />
                 )}
                 {view === 'view-podcast' && (
@@ -105,11 +105,11 @@ function Home({ onUserLoggedOut }) {
                         }}
                     />
                 )}
-                {view === 'edit-podcast' && (
-                    <EditPodcast
+                {view === 'edit-podcast-title' && (
+                    <EditPodcastTitle
                         podcast={podcast}
                         onCancelClick={() => handleViewChange(null)}
-                        onPodcastEdited={() => {
+                        onPodcastTitleEdited={() => {
                             handleViewChange(null)
                             updateStamp()
                             setPodcast(null)

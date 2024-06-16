@@ -1,14 +1,19 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 import OpenAI from 'openai'
 import logger from '../../utils/logger.ts'
 
-async function createIdeas(apiKey, transcript) {
+const { OPENAI_API_KEY } = process.env
+
+async function createIdeas(transcript) {
     if (!transcript) {
-        throw new Error('Transcript cannot be empty')
+        throw new Error('Transcript cannot be empty') // Content error TBC
     }
 
     try {
         logger.debug('Creating OpenAI instance')
-        const openai = new OpenAI({ apiKey })
+        const openai = new OpenAI({ apiKey: OPENAI_API_KEY })
 
         logger.debug('Sending transcript to OpenAI for idea generation')
         const completion = await openai.chat.completions.create({

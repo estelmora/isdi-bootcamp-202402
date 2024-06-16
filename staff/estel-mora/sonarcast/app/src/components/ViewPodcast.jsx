@@ -24,7 +24,7 @@ function ViewPodcast({ podcast, onIdeasGenerated }) {
                 return
             }
 
-            const updatedPodcast = await logic.editPodcastIdeas(podcastId, podcast.transcript)
+            const updatedPodcast = await logic.editPodcastIdeas(podcastId)
             setView(null)
             onIdeasGenerated(updatedPodcast)
         } catch (error) {

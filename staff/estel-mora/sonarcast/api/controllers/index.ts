@@ -5,7 +5,8 @@ import retrieveUser from './user/retrieveUserController'
 import createPodcast from './podcast/createPodcastController'
 import retrievePodcasts from './podcast/retrievePodcastsController'
 import retrievePodcast from './podcast/retrievePodcastController'
-import editPodcast from './podcast/editPodcastController'
+import editPodcastTitle from './podcast/editPodcastTitleController'
+import editPodcastIdeas from './podcast/editPodcastIdeasController'
 import removePodcast from './podcast/removePodcastController'
 import uploadFile from './podcast/uploadFileController'
 
@@ -17,9 +18,10 @@ const controllers = {
     createPodcast,
     retrievePodcasts,
     retrievePodcast,
-    editPodcast,
+    editPodcastTitle,
+    editPodcastIdeas,
     removePodcast,
-    uploadFile
+    uploadFile,
 }
 
 export default controllers
