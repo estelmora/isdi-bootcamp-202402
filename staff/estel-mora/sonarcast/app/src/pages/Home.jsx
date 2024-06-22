@@ -15,7 +15,7 @@ function Home({ onUserLoggedOut }) {
     const [stamp, setStamp] = useState(null)
     const [podcast, setPodcast] = useState(null)
 
-    useEffect(() => { // cada vegada que es renderitzi el home s'executa aquest codi
+    useEffect(() => { // cada vegada que es renderitzi el home s'executa aquest codi o cada vegada que canvii algun estat s'executa el codi
         const fetchUser = async () => {
             logger.debug('Home → fetchUser')
 

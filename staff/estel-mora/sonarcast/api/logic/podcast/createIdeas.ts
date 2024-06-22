@@ -37,3 +37,6 @@ async function createIdeas(transcript) {
 }
 
 export default createIdeas
+
+
+
